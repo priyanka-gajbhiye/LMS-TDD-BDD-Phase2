@@ -37,10 +37,19 @@ public class ConfigfileReader {
 
 	public static String getApplicationUrl() {
 		String url = properties.getProperty("url");
+		System.out.println("URL is " +url);
 		if (url != null)
 			return url;
 		else
 			throw new RuntimeException("url not available. ");
+	}
+	
+	public static String getInvalidUrl() {
+		String invalid_url = properties.getProperty("invalid_url");
+		if (invalid_url != null)
+			return invalid_url;
+		else
+			throw new RuntimeException("Invalid URL is empty");
 	}
 
 
