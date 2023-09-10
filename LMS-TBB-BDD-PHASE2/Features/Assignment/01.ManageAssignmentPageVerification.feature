@@ -4,22 +4,22 @@ Feature: Manage assignment page Verification
 
   Scenario: Verify landing in manage assignment page
     Given Admin is on dashboard page after Login
-    When Admin clicks "assignment" button on the navigation bar
-    Then Admin should see URL with "Manage assignment"
+    When Admin clicks assignment button on the navigation bar
+    Then Admin should see URL with Manage assignment
     
     Scenario: Capture the response time to navigate to manage assignment page
     Given Admin is on dashboard page after Login
-    When Admin clicks "assignment" button on the navigation bar
+    When Admin clicks assignment button on the navigation bar
     Then Get the response time for navigation from dashboard page to manage assignment page
     
     Scenario: Verify manage assignment page Header
     Given Admin is on dashboard page after Login
-    When Admin clicks "assignment" button on the navigation bar
+    When Admin clicks assignment button on the navigation bar
     Then Admin should see header with "Manage assignment"
     
     Scenario: Validate text in manage assignment page
     Given Admin is on dashboard page after Login
-    When Admin clicks "assignment" button on the navigation bar and get all text from the portal page
+    When Admin clicks assignment button on the navigation bar and get all text from the portal page
     Then Admin should see correct spelling for the all the fields
     
     Scenario: Verify delete icon below the header

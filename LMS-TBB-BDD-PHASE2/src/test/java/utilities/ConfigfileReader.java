@@ -42,6 +42,20 @@ public class ConfigfileReader {
 		else
 			throw new RuntimeException("url not available. ");
 	}
+	
+	public static String getInvalidUrl() {
+		String invalid_url = properties.getProperty("invalid_url");
+		if (invalid_url != null)
+			return invalid_url;
+		else
+			throw new RuntimeException("Invalid URL is empty ");
+	}
 
-
+	public static String getManageAssignmentUrl() {
+		String url = properties.getProperty("manageassignment_url");
+		if (url != null)
+			return url;
+		else
+			throw new RuntimeException("manage assignment url not available. ");
+	}
 }
