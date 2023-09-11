@@ -44,70 +44,78 @@ public class AssignmentSD{
 		assignment.getAllText();
 	}
 
-	@Then("Admin should see correct spelling for the all the fields")
-	public void admin_should_see_correct_spelling_for_the_all_the_fields() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	@Then("Admin should see correct spelling for the all the fields as {string}")
+	public void admin_should_see_correct_spelling_for_the_all_the_fields_as(String string) { 
+		String actual_Msg = assignment.spellcheck();
+		Assert.assertEquals(string,actual_Msg);
+		System.out.println("The field is "+actual_Msg);
 	}
 
-	@Then("Admin should see disabled delete icon below the {string}")
-	public void admin_should_see_disabled_delete_icon_below_the(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+
+	@Then("Admin should see disabled delete icon below the header")
+	public void admin_should_see_disabled_delete_icon_below_the_header() {
+		boolean t=assignment.deleteMultiRowBtndisplay();
+		if(t==true)
+		System.out.println("Disabled Delete Button is Visible");
+		else
+			System.out.println("Not Visible");
 	}
 
 	@Then("Admin should see search bar on the manage assignment page")
 	public void admin_should_see_search_bar_on_the_manage_assignment_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		boolean t=assignment.searchBardisplay();
+		if(t==true)
+			System.out.println("Search Bar is Visible");
+			else
+				System.out.println("Not Visible");
 	}
 
 	@Then("Admin should see +Add New assignment button on the manage assignment page")
 	public void admin_should_see_add_new_assignment_button_on_the_manage_assignment_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		boolean t=assignment.newAssignmentBtndisplay();
+		if(t==true)
+			System.out.println("+Add New Assignment Button is Visible");
+			else
+				System.out.println("Not Visible");
 	}
 
-	@Then("Admin should see data table on the manage assignment page With following column headers. \\(check box symbol ,Assignment name, Assignment description, Assignment Date, Assignment Grade, Edit Delete)")
-	public void admin_should_see_data_table_on_the_manage_assignment_page_with_following_column_headers_check_box_symbol_assignment_name_assignment_description_assignment_date_assignment_grade_edit_delete() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	@Then("Admin should see data table on the manage assignment page With following column headers")
+	public void admin_should_see_data_table_on_the_manage_assignment_page_with_following_column_headers() {
+		boolean t=assignment.dataTabledisplay();
+		if(t==true)
+			System.out.println("Table and Headers are Visible");
+			else
+				System.out.println("Not Visible");
 	}
 
 	@Then("Edit Icon in each row of data table only  when entries are available")
 	public void edit_icon_in_each_row_of_data_table_only_when_entries_are_available() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    assignment.editRowdisplay();
 	}
 
 	@Then("Edit Icon will not be present in data table")
 	public void edit_icon_will_not_be_present_in_data_table() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    assignment.editRownotdisplay();
 	}
 
 	@Then("Delete Icon in each row of data table only  when entries are available")
 	public void delete_icon_in_each_row_of_data_table_only_when_entries_are_available() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		assignment.deleteRowdisplay();
 	}
 
 	@Then("Delete Icon will not be present in data table")
 	public void delete_icon_will_not_be_present_in_data_table() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		assignment.deleteRownotdisplay();
 	}
 
 	@Then("Admin should see sort icon near the column headers except for Edit and Delete")
 	public void admin_should_see_sort_icon_near_the_column_headers_except_for_edit_and_delete() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		assignment.sortIcondisplay();
 	}
 
 	@Then("Admin should see check box in the all rows  of data table when entries available")
 	public void admin_should_see_check_box_in_the_all_rows_of_data_table_when_entries_available() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    assignment.rowCheckboxdisplay();
 	}
 
 	@Then("Above the footer Admin should see the text as {string} below the table")
