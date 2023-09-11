@@ -14,12 +14,12 @@ public class HomePageSD {
 	
 	@Given("Admin Launch the Browser")
 	public void admin_launch_the_browser() {
-	    hp.url();
+	    
 	}
 
 	@When("Admin gives correct LMS portal URL")
 	public void admin_gives_correct_lms_portal_url() {
-	    
+		hp.url();
 	}
 
 	@Then("Admin should land on the Home Page")
@@ -56,7 +56,16 @@ public class HomePageSD {
 	public void admin_should_able_to_click_login_button() {
 	    hp.logincheck();
 	}
+	
+	@When("Admin gives invalid LMS portal URL")
+	public void admin_gives_invalid_lms_portal_url() {
+	    hp.invalid_url();
+	}
 
-
+	@Then("Admin should receive {string} error")
+	public void admin_should_receive_error(String string) {
+	    hp.invalidURLstatus();
+	}
+	
 
 }

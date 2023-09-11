@@ -2,7 +2,9 @@ package Page_Factory;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import static org.testng.Assert.assertTrue;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -15,6 +17,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.junit.Assert;
 import org.apache.log4j.Logger;
 import utilities.*;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.support.Color;
+import org.openqa.selenium.interactions.Actions;
 
 public class HomePage {
 	
@@ -24,6 +29,7 @@ public class HomePage {
 	 String invalid_url=ConfigfileReader.getInvalidUrl();
 	 HttpURLConnection huc = null;
      int respCode = 200;
+     Actions act = new Actions(driver);
 	 
 	 @FindBy (xpath  = "//a/button") WebElement loginbtn ;
 	 @FindBy (xpath  = "//a[text()='Customers']") WebElement learningtext ;	
@@ -31,6 +37,17 @@ public class HomePage {
 	 @FindBy (xpath  = "//a[text()='Systems']") WebElement systemtext;
 	 @FindBy (xpath  = "//a[text()='Login']") WebElement logintext ;
 	 @FindBy (xpath  = "//icon") WebElement logoimage ;
+	 @FindBy (xpath  = "//loginpageheader") WebElement loginpageheader;
+	 @FindBy (xpath  = "//loginpagetrailer") WebElement loginpagetrailer;
+	 @FindBy (xpath  = "//user") WebElement loginuser;
+	 @FindBy (xpath  = "//input[@type='text']") WebElement textcheckuser;
+	 @FindBy (xpath  = "//input[@type='password']") WebElement textcheckpassword;
+	 @FindBy (xpath  = "//a/button") WebElement loginpageloginbtn ;
+	 @FindBy (xpath  = "//password") WebElement loginpassword;
+	 @FindBy (xpath  = "//user//span[@class='Field_RequiredStar'][1]") WebElement loginuserasterick;
+	 @FindBy (xpath  = "//password//span[@class='Field_RequiredStar'][1]") WebElement loginpasswordasterick;
+	 @FindBy (xpath  = "//a/button") WebElement forgotUsernamePassword ;
+	 @FindBy (xpath  = "//a[text()='Customers']") WebElement resetpassword ;	
 	 
 	public HomePage() {
 		PageFactory.initElements(driver, this);
@@ -42,6 +59,10 @@ public class HomePage {
 	public void invalid_url() {
 		driver.get(invalid_url);
 		System.out.println("Incorrect URL");
+	}
+	
+	public void invalidURLstatus() {
+		assertTrue(driver.getTitle().contains("404"));
 	}
 	
 	public void broken_links() {
@@ -88,7 +109,6 @@ public class HomePage {
 	}
 	
 	public void spellchecker() {
-	
 	 String textLearning = learningtext.getText();
 	 Assert.assertEquals("LEARNING",textLearning);
 		System.out.println(textLearning);
@@ -102,7 +122,7 @@ public class HomePage {
 		 System.out.println(textsystemtext);
 		 
 		 String textlogintext = logintext.getText();
-		 Assert.assertEquals("SYSTEM",textlogintext);
+		 Assert.assertEquals("LOGIN",textlogintext);
 		 System.out.println(textlogintext);
 		
 	}
@@ -118,7 +138,6 @@ public class HomePage {
         {
         System.out.println("Image is displayed.");
         }
-
 	}
 	
 	public void correctlogo(WebElement img) throws IOException {
@@ -131,12 +150,149 @@ public class HomePage {
 		{
 		    System.out.println("Login button is Displayed");
 		}
-
 		else
 		    System.out.println("Show more is not there");
 	}
 	public void logincheck() {
 		loginbtn.click();
 	}
+	public void textcheck() {
+		List<WebElement> textfields = driver.findElements(By.xpath("//input[@type='text' or @type='password']"));
+		int size = textfields.size();
+		if(size==2) {
+			Loggerload.info("2 text feilds are present");
+		}
+		else {
+			Loggerload.info("text feilds are not 2");
+		}
+	}
+	public void getallText() {
+		driver.getPageSource();
+	}
+	
+	public void headerlogin(String string) {
+		String expectedmsg = string;
+		String actualmsg = loginpageheader.getText();
+		Assert.assertEquals(expectedmsg,actualmsg);
+		 System.out.println(actualmsg);
+	}
+	
+	public void usertext(String string) {
+  	  String expectedmsg = string;
+		String actualmsg = loginuser.getText();
+		Assert.assertEquals(expectedmsg,actualmsg);
+		 System.out.println(actualmsg);
+    }
+    
+    public void passwordtext(String string) {
+  	  String expectedmsg = string;
+		String actualmsg = loginpassword.getText();
+		Assert.assertEquals(expectedmsg,actualmsg);
+		 System.out.println(actualmsg);
+    }
+	
+      public void astrikuser(String string) {
+    	  String expectedmsg = string;
+  		String actualmsg = loginuserasterick.getText();
+  		Assert.assertEquals(expectedmsg,actualmsg);
+  		 System.out.println(actualmsg);
+      }
+      
+      public void astrikpassword(String string) {
+    	  String expectedmsg = string;
+  		String actualmsg = loginpasswordasterick.getText();
+  		Assert.assertEquals(expectedmsg,actualmsg);
+  		 System.out.println(actualmsg);
+      }
+      
+      public void centrepage() {
+          Dimension dimuser = loginuser.getSize();
+          Dimension dimpassword = loginpassword.getSize();
+         int heightuser= dimuser.height;
+         int widthuser=dimuser.width;
+         int heightpassword= dimpassword.height;
+         int widthpassword=dimpassword.width;
+         
+         if (heightuser>30 & heightuser<60 & widthuser>400 & widthuser<600 & heightpassword >30 &heightpassword<60 
+        		 & widthpassword>400 & widthpassword<600 ) {
+        	Loggerload.info("Both text boxes are in page center");
+         }  
+      }
+      
+      public void centreloginbtn() {
+          Dimension dimuser = loginbtn.getSize();
+         int heightuser= dimuser.height;
+         int widthuser=dimuser.width;
+         
+         if (heightuser>30 & heightuser<60 & widthuser>400 & widthuser<600  ) {
+        	Loggerload.info("Login button in the centre");
+         }  
+      }
+      
+      public void usercolor() {
+    	  String color = loginuser.getCssValue("color");
+    	  String hex = Color.fromString(color).asHex();
+    	  
+    	  if (hex=="#808080" ) {
+    		  Loggerload.info("User String is in grey color");
+    	  }
+    	  else {
+    		  Loggerload.info("User String is not in grey color");
+    	  }
+      }
+      
+      public void passwordcolor() {
+    	  String color = loginpassword.getCssValue("color");
+    	  String hex = Color.fromString(color).asHex();
+    	  
+    	  if (hex=="#808080" ) {
+    		  Loggerload.info("User String is in grey color");
+    	  }
+    	  else {
+    		  Loggerload.info("User String is not in grey color");
+    	  }
+      }
+      
+      public void forgotUsernamePassword() {
+  		if(forgotUsernamePassword.isDisplayed()) 
+  		{
+  		    Loggerload.info("Forgot Username & Password Link is Displayed");
+  		}
+  		else
+  		{ Loggerload.info("Link is not available");
+  	}
+      }
+      
+      public void resetpassword() {
+    		if(resetpassword.isDisplayed()) 
+    		{
+    		    Loggerload.info("Resetpassword Link is Displayed");
+    		}
+    		else
+    		{ Loggerload.info("Link is not available");
+    	}
+        }
+      
+      public void validuser(String user) {
+    	  loginuser.sendKeys(user);
+      }
+      
+      public void validpassword(String password) {
+    	  loginpassword.sendKeys(password);
+      }
+      public void loginpageloginbtn() {
+    	  loginpageloginbtn.click();
+      }
+      public void invalidlogin(String user, String password) {
+    	  loginuser.sendKeys(user);
+    	  loginpassword.sendKeys(password);
+    	  loginbtn.click();
+      }
+      public void keyboardaction() {	  
+    	  act.moveToElement(loginpageloginbtn).keyDown(Keys.CONTROL).click().keyUp(Keys.CONTROL).build().perform();
+      }
 
+      public void mouseaction() {
+    	  act.doubleClick(loginpageloginbtn).perform();
+      }
 }
