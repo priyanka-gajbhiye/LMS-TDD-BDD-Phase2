@@ -16,13 +16,21 @@ public class AssignmentPage {
 	@FindBy(xpath="//*[@class='btn btn-assignment']") WebElement assignment_btn;
 	@FindBy(xpath="//*[text()='Manage Assignment']") WebElement header;
 	@FindBy(xpath="//*[text()='LMS - Learning Management System']") WebElement navigation_header;
+	@FindBy(xpath="//*[text()='Program Name']") WebElement program_name;
+	@FindBy(xpath="//*[text()='Batch Name']") WebElement batch_name;
 	@FindBy(xpath="//*[text()='Assignment Name']") WebElement assignment_name;
 	@FindBy(xpath="//*[text()='Assignment Description']") WebElement assignment_description;
 	@FindBy(xpath="//*[text()='Assignment Due Date']") WebElement assignment_due_date;
 	@FindBy(xpath="//*[text()='Assignment Grade']") WebElement assignment_grade;
+	@FindBy(xpath="//*[text()='Grade By']") WebElement grade_by;
+	@FindBy(xpath="//*[text()='Assignment File1']") WebElement assignment_file1;
+	@FindBy(xpath="//*[text()='Assignment File2']") WebElement assignment_file2;
+	@FindBy(xpath="//*[text()='Assignment File3']") WebElement assignment_file3;
+	@FindBy(xpath="//*[text()='Assignment File4']") WebElement assignment_file4;
+	@FindBy(xpath="//*[text()='Assignment File5']") WebElement assignment_file5;
 	@FindBy(xpath="//*[text()='Edit/Delete']") WebElement edit_delete;
 	@FindBy (xpath="//button//span[text()=' Delete']") WebElement deleteMuti_btn;
-	@FindBy(xpath="//*[@class='btn btn-search']") WebElement search_bar;
+	@FindBy(xpath="//*[@class='btn bar-search']") WebElement search_bar;
 	@FindBy(xpath="//*[@class='btn btn-add-new-assignment']") WebElement addNewAssignment_btn;
 	@FindBy (xpath="//table//thead//tr//th//input") WebElement checkbox;
 	@FindBy (xpath="//*[@id='content']/div[2]/div[2]/div[1]/table") WebElement data_table;
@@ -33,13 +41,20 @@ public class AssignmentPage {
 	@FindBy(xpath="//*[@class='btn btn-sort']") WebElement sort_btn;
 	@FindBy (xpath="//table//thead//tr//th//input") WebElement row_checkbox_btn;
 	@FindBy(xpath="//*[contains(text(),'Showing')]") WebElement footer;
-
-//	@FindBy(xpath="//*[@class='btn btn-next']") WebElement nextPage_btn;
-//	@FindBy(xpath="//*[@class='btn btn-previous']") WebElement previousPage_btn;
-//	@FindBy(xpath="//*[@class='btn btn-last-page']") WebElement lastPage_btn;
-//	@FindBy(xpath="//*[@class='btn btn-first-page']") WebElement firstPage_btn;
-//	@FindBy(xpath="//*[@class='btn btn-save']") WebElement save_btn;
-//	@FindBy(xpath="//*[@class='btn btn-cancel']") WebElement cancel_btn;
+	@FindBy(xpath="//*[@class='btn btn-next']") WebElement nextPage_btn;
+	@FindBy(xpath="//*[@class='btn btn-previous']") WebElement previousPage_btn;
+	@FindBy(xpath="//*[@class='btn btn-last-page']") WebElement lastPage_btn;
+	@FindBy(xpath="//*[@class='btn btn-first-page']") WebElement firstPage_btn;
+	@FindBy(xpath="//*[@id='page-navigator']/div") WebElement pagination_navigator;
+	@FindBy(xpath="//*[@class='btn btn-search']") WebElement search_btn;
+	@FindBy (xpath="//*[contains(text(),'Assignment Details')]") WebElement pop_up_header;
+	@FindBy(xpath="//input[@type='text']") List<WebElement> text_boxes;
+	@FindBy(xpath="//*[@id='batch-select-menu']") WebElement batch_dropdown;
+	@FindBy(xpath="//*[@id='program-select-menu']") WebElement program_dropdown;
+	@FindBy(xpath="//*[@id='datepicker']")  WebElement calender_icon;
+	@FindBy(xpath="//*[@class='btn btn-save']") WebElement save_btn;
+	@FindBy(xpath="//*[@class='btn btn-cancel']") WebElement cancel_btn;
+	@FindBy(xpath="//*[@class='btn btn-close']") WebElement close_btn;
 //	@FindBy(xpath="//*[@class='btn btn-manage']") WebElement manage_btn;
 //	@FindBy(xpath="//*[@class='btn btn-assignment-name']") WebElement assignmentName_btn;
 //	@FindBy(xpath="//*[@class='btn btn-submit']") WebElement submit_btn;
@@ -50,7 +65,6 @@ public class AssignmentPage {
 //	@FindBy(xpath="//*[@class='btn btn-delete-on-right']") WebElement deleteOnRight_btn;
 //	@FindBy(xpath="//*[@class='btn btn-delete-on-top-left']") WebElement deleteOnTopLeft_btn;
 //	@FindBy (xpath="//*[@class='alert alert-primary']") WebElement message;
-//	@FindBy (xpath="//*[contains(text(),'Manage Assignment')]") WebElement assignment_Form;
 //	@FindBy (id="search_query_top") WebElement search_txt;
 //	@FindBy (xpath="//*[contains(text(),'Delete Confirm')]") WebElement DeletConfirm_Box;
 //	@FindBy (xpath="//table//thead//tr//th//input") WebElement SelectAll_checkbox;
@@ -84,8 +98,7 @@ public class AssignmentPage {
 		System.out.println("The Page Load time in milliseconds is: "+pageload_time);
 	}
 	
-	public String Header() {
-		
+	public String Header() {	
 		return header.getText();
 	}
 	
@@ -186,16 +199,103 @@ public class AssignmentPage {
 				}
 			}
 	
-	public void footerdisplay() {
+	public String footerText() {
+		
+			return footer.getText();
+	}
+	
+	public boolean footerTextdisplay() {		
+		return footer.isDisplayed();
+	}
+
+	public boolean paginatordisplay() {
+
+		return pagination_navigator.isDisplayed();
+	}
+	
+	public void textSearch(String assignmentName) 
+	{
+		search_btn.sendKeys(assignmentName);	
+	}
+	
+	public void textSearchdisplayed() 
+	{
+		String text=search_btn.getText();
+		String rowText=((WebElement) Rows).getText();
+		text.compareTo(rowText);
 		
 	}
 	
+	public void newAssignmentBtnclick() {
+		addNewAssignment_btn.click();
+	}
 	
-//	public boolean assignmentForm(String text) {
-//
-//		return assignment_Form.isDisplayed();
-//	}
-//	
+	public String popUpHeader() {	
+		return pop_up_header.getText();
+	}
+	
+	public boolean inputFieldsdisplay(String field) {
+		if(program_name.isDisplayed())
+			return program_name.getText().equals(field);
+		if(batch_name.isDisplayed())
+			return batch_name.getText().equals(field);
+		if(assignment_name.isDisplayed())
+			return assignment_name.getText().equals(field);
+		if(assignment_description.isDisplayed())
+			return assignment_description.getText().equals(field);
+		if(grade_by.isDisplayed())
+			return grade_by.getText().equals(field);
+		if(assignment_due_date.isDisplayed())
+			return assignment_due_date.getText().equals(field);
+		if(assignment_file1.isDisplayed())
+			return assignment_file1.getText().equals(field);
+		if(assignment_file2.isDisplayed())
+			return assignment_file2.getText().equals(field);
+		if(assignment_file3.isDisplayed())
+			return assignment_file3.getText().equals(field);
+		if(assignment_file4.isDisplayed())
+			return assignment_file4.getText().equals(field);
+		if(assignment_file5.isDisplayed())
+			return assignment_file5.getText().equals(field);
+		return false;	
+	}
+	
+	public void textBoxNumbers(int i) {
+		if(text_boxes.size()==i)
+			System.out.println("There are "+i+" TextBoxes");
+		else
+			System.out.println("Error:Number of boxes don't match");
+	}
+	
+	public boolean batchDropdowndisplay() {		
+		return batch_dropdown.isDisplayed();
+	}
+	
+	public boolean programDropdowndisplay() {		
+		return program_dropdown.isDisplayed();
+	}
+	
+	public boolean calenderIcondisplay() {		
+		return calender_icon.isDisplayed();
+	}
+	
+	public boolean SaveDisplay() 
+	{
+		return save_btn.isDisplayed();	
+	}
+	
+	public boolean CancelDisplay() 
+	{
+		return cancel_btn.isDisplayed();
+	}
+	
+	public boolean CloseDisplay() 
+	{
+		return close_btn.isDisplayed();
+	}
+	
+	
+	
 //	public void clickNextBtn() 
 //	{
 //		nextPage_btn.click();
@@ -268,16 +368,6 @@ public class AssignmentPage {
 //	public void clickAddNewAssignment() 
 //	{
 //		addNewAssignment_btn.click();	
-//	}
-//	
-//	public void clickSave() 
-//	{
-//		save_btn.click();	
-//	}
-//	
-//	public void clickCancel() 
-//	{
-//		cancel_btn.click();	
 //	}
 //	
 //	public void clickManage() 
@@ -361,5 +451,6 @@ public class AssignmentPage {
 //	public void clickAllCheckbox() {
 //		SelectAll_checkbox.click();	
 //	}
+
 
 }

@@ -1,4 +1,4 @@
-Background: Admin logged into LMS portal and clicks assignment button on the navigation bar 
+#Background: Admin logged into LMS portal and clicks assignment button on the navigation bar 
 
 Feature: Assignment details Popup window verification
 
@@ -7,10 +7,23 @@ Feature: Assignment details Popup window verification
     When Admin click +Add new assignment button
     Then  Admin should see a popup  with  heading "Assignment details"
     
-    Scenario: Verify input fields in Assignment details popup window
+    Scenario Outline: Verify input fields in Assignment details popup window
     Given Admin is on manage assignment Page
     When Admin click +Add new assignment button
-    Then  Admin should see input fields Text (Program name, batch number,Assignment Name, Assignment Description, grade by, Assignment due date, Assignment File1, Assignment file 2, Assignment file 3, Assignment file 4, Assignment file 5)
+    Then  Admin should see input "<fields>" Text
+    Examples:
+    |fields|
+    |Program Name| 
+    |batch number|
+    |Assignment Name|
+    |Assignment Description|
+    |Grade By|
+    |Assignment Due Date|
+    |Assignment File1|
+    |Assignment File2|
+    |Assignment File3|
+    |Assignment File4|
+    |Assignment File5|
     
     Scenario: Verify text box present in Assignment details popup window
     Given Admin is on manage assignment Page

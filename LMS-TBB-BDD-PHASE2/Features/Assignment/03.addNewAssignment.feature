@@ -1,5 +1,5 @@
 
-Background: Admin click +Add new assignment button after reaching to manage assignment page
+#Background: Admin click +Add new assignment button after reaching to manage assignment page
 
 Feature: Add new assignment 
 
@@ -17,8 +17,7 @@ Feature: Add new assignment
     Given Admin is in  assignment details popup window
     When Admin enters values in all fields with valid data and clicks save button (Program name, batch number,Assignment Name, Assignment Description, grade by, Assignment due date, Assignment File1, Assignment file 2, Assignment file 3, Assignment file 4, Assignment file 5)
     Then Admin should see new assignment details is added in the data table
-    
-    
+       
     Scenario: Validate admin able to add new assignment with invalid data  in optional fields
     Given Admin is in  assignment details popup window
     When Admin enters with invalid data in optional fields and clicks save button (Assignment File1, Assignment file 2, Assignment file 3, Assignment file 4, Assignment file 5)

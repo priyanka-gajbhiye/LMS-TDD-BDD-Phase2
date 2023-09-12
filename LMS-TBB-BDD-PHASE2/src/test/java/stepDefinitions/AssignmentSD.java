@@ -1,14 +1,20 @@
 package stepDefinitions;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Assert;
 import Page_Factory.AssignmentPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import utilities.ExcelReader;
 
 public class AssignmentSD{
 	
 	AssignmentPage assignment=new AssignmentPage(); 
+	ExcelReader reader = new ExcelReader();
 	
 	@Given("Admin is on dashboard page after Login")
 	public void admin_is_on_dashboard_page_after_login() {
@@ -120,35 +126,43 @@ public class AssignmentSD{
 
 	@Then("Above the footer Admin should see the text as {string} below the table")
 	public void above_the_footer_admin_should_see_the_text_as_below_the_table(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    String actual_Msg=assignment.footerText();
+	    Assert.assertEquals(string,actual_Msg);
+		System.out.println("The field is "+actual_Msg);
 	}
 
 	@Then("Admin should see the pagination controls under the data table")
 	public void admin_should_see_the_pagination_controls_under_the_data_table() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		boolean t=assignment.paginatordisplay();
+		if(t==true)
+			System.out.println("Paginator is Visible");
+			else
+				System.out.println("Not Visible");
 	}
 
 	@Then("Admin should see the text with total number assignments in the data table")
 	public void admin_should_see_the_text_with_total_number_assignments_in_the_data_table() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		boolean t=assignment.footerTextdisplay();
+		if(t==true)
+			System.out.println("Footer is Visible");
+			else
+				System.out.println("Not Visible");
 	}
 
-	@When("Admin enters assignment name into search box")
-	public void admin_enters_assignment_name_into_search_box() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	@When("Admin enters assignment name into search box from excel sheet {string} and {int}")
+	public void admin_enters_assignment_name_into_search_box_from_excel_sheet_and(String string, Integer int1) throws InvalidFormatException, IOException {
+		List<Map<String,String>> testData=reader.getData(".\\TestData\\Assignment.xlsx", "Assignment");
+		String assignmentName=testData.get(int1).get("assignmentName");
+		assignment.textSearch(assignmentName);
+		
 	}
 
 	@Then("Displays entries with that assignment name")
 	public void displays_entries_with_that_assignment_name() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    assignment.textSearchdisplayed();
 	}
 
-	@When("Admin enters assignment  name is not existing the table into search box")
+	@When("Admin enters assignment name is not existing the table into search box")
 	public void admin_enters_assignment_name_is_not_existing_the_table_into_search_box() {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
@@ -214,4 +228,301 @@ public class AssignmentSD{
 	    throw new io.cucumber.java.PendingException();
 	}
 
+	////////////////////////////////////////////////////
+	//Assignment Detail Feature
+	
+	@Given("Admin is on manage assignment Page")
+	public void admin_is_on_manage_assignment_page() {
+	    assignment.clickAssignmentPage();
+	}
+
+	@When("Admin click +Add new assignment button")
+	public void admin_click_add_new_assignment_button() {
+	    assignment.newAssignmentBtnclick();
+	}
+
+	@Then("Admin should see a popup  with  heading {string}")
+	public void admin_should_see_a_popup_with_heading(String expected_text) {
+		String actual_Msg = assignment.popUpHeader();
+		Assert.assertEquals(expected_text,actual_Msg);
+		System.out.println("The pop up window header is "+actual_Msg);
+	}
+
+	@Then("Admin should see input {string} Text")
+	public void admin_should_see_input_text(String string) {
+		boolean t=assignment.inputFieldsdisplay(string);
+		if(t==true)
+			System.out.println("Field is Visible");
+			else
+				System.out.println("Not Visible");
+	}
+
+	@Then("{int} textbox should be  present in Assignment details popup window")
+	public void textbox_should_be_present_in_assignment_details_popup_window(Integer int1) {
+	    assignment.textBoxNumbers(int1);
+	}
+
+	@Then("Admin should see  dropdown option for Batch Number")
+	public void admin_should_see_dropdown_option_for_batch_number() {
+		boolean t=assignment.batchDropdowndisplay();
+	    if(t==true)
+			System.out.println("batch number is Visible");
+			else
+				System.out.println("Not Visible");
+	}
+
+	@Then("Admin should see  dropdown option for Program name")
+	public void admin_should_see_dropdown_option_for_program_name() {
+		boolean t=assignment.programDropdowndisplay();
+		if(t==true)
+			System.out.println("program dropdown is Visible");
+			else
+				System.out.println("Not Visible");
+	}
+
+	@Then("Admin should see  calendar icon for assignment due date")
+	public void admin_should_see_calendar_icon_for_assignment_due_date() {
+		boolean t=assignment.calenderIcondisplay();
+	    if(t==true)
+			System.out.println("calender icon is Visible");
+			else
+				System.out.println("Not Visible");
+	}
+
+	@Then("Admin should see  save button in the Assignment detail popup window")
+	public void admin_should_see_save_button_in_the_assignment_detail_popup_window() {
+		boolean t=assignment.SaveDisplay();
+	    if(t==true)
+			System.out.println("save button is Visible");
+			else
+				System.out.println("Not Visible");
+	}
+
+	@Then("Admin should see  cancel button in the Assignment detail popup window")
+	public void admin_should_see_cancel_button_in_the_assignment_detail_popup_window() {
+		boolean t=assignment.CancelDisplay();
+	    if(t==true)
+			System.out.println("cancel button is Visible");
+			else
+				System.out.println("Not Visible");
+	}
+
+	@Then("Admin should see  close button on the Assignment details popup window")
+	public void admin_should_see_close_button_on_the_assignment_details_popup_window() {
+		boolean t=assignment.CloseDisplay();
+	    if(t==true)
+			System.out.println("close button is Visible");
+			else
+				System.out.println("Not Visible");
+	}
+
+	/////////////////////////////////////////////////////////////////////////////
+	///////////Add new assignment feature/////////////////////
+	
+	@Given("Admin is in  assignment details popup window")
+	public void admin_is_in_assignment_details_popup_window() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@When("Admin enters all mandatory field values with valid data and clicks save button")
+	public void admin_enters_all_mandatory_field_values_with_valid_data_and_clicks_save_button() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("Admin should see new assignment details is added in the data table")
+	public void admin_should_see_new_assignment_details_is_added_in_the_data_table() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@When("Admin enters all mandatory field values with invalid data and clicks save button")
+	public void admin_enters_all_mandatory_field_values_with_invalid_data_and_clicks_save_button() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("Error message should appear in alert")
+	public void error_message_should_appear_in_alert() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@When("Admin enters values in all fields with valid data and clicks save button \\(Program name, batch number,Assignment Name, Assignment Description, grade by, Assignment due date, Assignment File1, Assignment file {int}, Assignment file {int}, Assignment file {int}, Assignment file {int})")
+	public void admin_enters_values_in_all_fields_with_valid_data_and_clicks_save_button_program_name_batch_number_assignment_name_assignment_description_grade_by_assignment_due_date_assignment_file1_assignment_file_assignment_file_assignment_file_assignment_file(Integer int1, Integer int2, Integer int3, Integer int4) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@When("Admin enters with invalid data in optional fields and clicks save button \\(Assignment File1, Assignment file {int}, Assignment file {int}, Assignment file {int}, Assignment file {int})")
+	public void admin_enters_with_invalid_data_in_optional_fields_and_clicks_save_button_assignment_file1_assignment_file_assignment_file_assignment_file_assignment_file(Integer int1, Integer int2, Integer int3, Integer int4) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@When("Admin enters  data missing value in program name and clicks save button \\(batch number,Assignment Name, Assignment Description, grade by, Assignment due date, Assignment File1, Assignment file {int}, Assignment file {int}, Assignment file {int}, Assignment file {int})")
+	public void admin_enters_data_missing_value_in_program_name_and_clicks_save_button_batch_number_assignment_name_assignment_description_grade_by_assignment_due_date_assignment_file1_assignment_file_assignment_file_assignment_file_assignment_file(Integer int1, Integer int2, Integer int3, Integer int4) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("Program Name is missing")
+	public void program_name_is_missing() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@When("Admin enters data missing value in Batch number and clicks save button \\(Program name,Assignment Name, Assignment Description, grade by, Assignment due date, Assignment File1, Assignment file {int}, Assignment file {int}, Assignment file {int}, Assignment file {int})")
+	public void admin_enters_data_missing_value_in_batch_number_and_clicks_save_button_program_name_assignment_name_assignment_description_grade_by_assignment_due_date_assignment_file1_assignment_file_assignment_file_assignment_file_assignment_file(Integer int1, Integer int2, Integer int3, Integer int4) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("Batch number is missing")
+	public void batch_number_is_missing() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@When("Admin enters data missing value in Assignment name and clicks save button \\(Program name, batch number,Assignment Name,  grade by, Assignment Due date )")
+	public void admin_enters_data_missing_value_in_assignment_name_and_clicks_save_button_program_name_batch_number_assignment_name_grade_by_assignment_due_date() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("Assignment name is missing")
+	public void assignment_name_is_missing() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@When("Admin enters data missing value in Assignment due date and clicks save button \\( Program name, batch number,Assignment Name, grade by)")
+	public void admin_enters_data_missing_value_in_assignment_due_date_and_clicks_save_button_program_name_batch_number_assignment_name_grade_by() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("Assignment due date is missing")
+	public void assignment_due_date_is_missing() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@When("Admin enters data missing value in grade by  and clicks save button \\(Program name, batch number,Assignment Name, Assignment due date)")
+	public void admin_enters_data_missing_value_in_grade_by_and_clicks_save_button_program_name_batch_number_assignment_name_assignment_due_date() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("Grade by is missing")
+	public void grade_by_is_missing() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@When("Admin enters passed date in the due date field and clicks save button \\( Program name, batch number,Assignment Name,  grade by, Assignment Due date )")
+	public void admin_enters_passed_date_in_the_due_date_field_and_clicks_save_button_program_name_batch_number_assignment_name_grade_by_assignment_due_date() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("Assignment cannot be created for the passed date")
+	public void assignment_cannot_be_created_for_the_passed_date() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@When("Admin clicks date from date picker")
+	public void admin_clicks_date_from_date_picker() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("selected date should be their in class date text box")
+	public void selected_date_should_be_their_in_class_date_text_box() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("selected date should be in  mm\\/dd\\/yyyy format")
+	public void selected_date_should_be_in_mm_dd_yyyy_format() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@When("Admin clicks right arrow in the date picker near month")
+	public void admin_clicks_right_arrow_in_the_date_picker_near_month() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("Next month calender should visible")
+	public void next_month_calender_should_visible() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@When("Admin clicks left arrow in the date picker near month")
+	public void admin_clicks_left_arrow_in_the_date_picker_near_month() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("previous month calender should visible")
+	public void previous_month_calender_should_visible() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@When("Admin clicks date picker button")
+	public void admin_clicks_date_picker_button() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("Admin should see current date is highled in the date picker")
+	public void admin_should_see_current_date_is_highled_in_the_date_picker() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@When("Admin clicks date picker button and selects future date")
+	public void admin_clicks_date_picker_button_and_selects_future_date() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("Admin should see selected date is highled in the date picker")
+	public void admin_should_see_selected_date_is_highled_in_the_date_picker() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@When("Admin clicks Cancel button without entering values in the fields")
+	public void admin_clicks_cancel_button_without_entering_values_in_the_fields() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("Admin should land on manage assignment page")
+	public void admin_should_land_on_manage_assignment_page() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@When("Admin clicks Cancel button entering values in the fields")
+	public void admin_clicks_cancel_button_entering_values_in_the_fields() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("Admin should land on manage assignment Page and validate new assignment is not created in the data table")
+	public void admin_should_land_on_manage_assignment_page_and_validate_new_assignment_is_not_created_in_the_data_table() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	
+	
 }

@@ -85,32 +85,31 @@ Feature: Manage assignment page Verification
     When Admin clicks assignment button on the navigation bar 
     Then Above the footer Admin should see the text as "Showing x to y of z entries" below the table
    
-#x- starting record number on that page
-#y-ending record number on that page
-#z-Total number of records       Note: with or without entries"
-   
-    #Scenario: Verify Pagination control below the data table
-    #Given Admin is on dashboard page after Login
-    #When Admin clicks "assignment" button on the navigation bar 
-    #Then  Admin should see the pagination controls under the data table
-    #
-    #Scenario: Validate footer  text
-    #Given Admin is on dashboard page after Login
-    #When Admin clicks "assignment" button on the navigation bar 
-    #Then Admin should see the text with total number assignments in the data table 
-    #
-    #
+    Scenario: Verify Pagination control below the data table
+    Given Admin is on dashboard page after Login
+    When Admin clicks assignment button on the navigation bar 
+    Then  Admin should see the pagination controls under the data table
+    
+    Scenario: Validate footer  text
+    Given Admin is on dashboard page after Login
+    When Admin clicks assignment button on the navigation bar 
+    Then Admin should see the text with total number assignments in the data table 
+    
+    
     #searchbox
-    #Scenario: Validate search box function
-    #Given Admin is on dashboard page after Login
-    #When Admin enters assignment name into search box   
-    #Then Displays entries with that assignment name
-    #
-    #Scenario: Validate search box function
-    #Given Admin is on dashboard page after Login
-    #When  Admin enters assignment  name is not existing the table into search box    
-    #Then Displays empty details in the data table
-    #
+    Scenario Outline: Validate search box function
+    Given Admin is on dashboard page after Login
+    When Admin enters assignment name into search box from excel sheet "<Sheetname>" and <RowNumber>
+    Then Displays entries with that assignment name
+     Examples: 
+      | Sheetname | RowNumber |
+      | Sheet1    |         1 |
+    
+    Scenario: Validate search box function
+    Given Admin is on dashboard page after Login
+    When  Admin enters assignment name is not existing the table into search box    
+    Then Displays empty details in the data table
+    
     #Scenario: Validate search box function
     #Given Admin is on dashboard page after Login
     #When Admin enters assignment description into search box     
