@@ -53,10 +53,15 @@ public class AssignmentPage {
 	@FindBy(xpath="//*[@id='batch-select-menu']") WebElement batch_dropdown;
 	@FindBy(xpath="//*[@id='program-select-menu']") WebElement program_dropdown;
 	@FindBy(xpath="//*[@id='datepicker']")  WebElement calender_icon;
+	@FindBy(xpath="//*[@id='datepicker-left']")  WebElement calender_left;
+	@FindBy(xpath="//*[@id='datepicker-right']")  WebElement calender_right;
+	@FindBy(xpath="//*[@id='datepicker-month']")  WebElement calender_month;
+	@FindBy(xpath="//table[@class='ui-datepicker-calendar']//td)") List<WebElement> all_dates;
 	@FindBy(xpath="//*[@class='btn btn-save']") WebElement save_btn;
 	@FindBy(xpath="//*[@class='btn btn-cancel']") WebElement cancel_btn;
 	@FindBy(xpath="//*[@class='btn btn-close']") WebElement close_btn;
 	@FindBy (xpath="//*[@class='alert alert-message']") WebElement message;
+	@FindBy (xpath="//*[@class='date-picker-highligted')]/div[@class='v-btn__content']") WebElement highligted_date;
 	
 //	@FindBy(xpath="//*[@class='btn btn-manage']") WebElement manage_btn;
 //	@FindBy(xpath="//*[@class='btn btn-assignment-name']") WebElement assignmentName_btn;
@@ -296,7 +301,7 @@ public class AssignmentPage {
 		return close_btn.isDisplayed();
 	}
 	
-	public boolean fillMandatoryFields(String ProgramName,String batchNumber,String AssignmentName,String gradeBy,String AssignmentDueDate){
+	public void fillMandatoryFields(String ProgramName,String batchNumber,String AssignmentName,String gradeBy,String AssignmentDueDate){
 		Select select1= new Select(program_dropdown);
 		select1.selectByVisibleText(ProgramName);
 		Select select2= new Select(batch_dropdown);
@@ -344,11 +349,57 @@ public class AssignmentPage {
 			return message.getText();
 	} 
 	
-//	public void clickNextBtn() 
-//	{
-//		nextPage_btn.click();
-//	}
-//	
+	public void selectDate() {
+	for(WebElement ele:all_dates)
+	{	
+		String date=ele.getText();	
+        // once admin selects date is 28 then click and break
+		if(date.equalsIgnoreCase("28"))
+		{
+			ele.click();
+			break;
+		}
+	}
+	}
+	
+	public boolean dateDisplay() {
+		return assignment_due_date.isDisplayed();
+	}
+	
+	public void validDateFormat() {
+		boolean isvalidFormat=assignment_due_date.getText().matches("([0-9]{2})/([0-9]{2})/([0-9]{4})");
+	}
+	
+	
+	public void clickRightArrowCalender() 
+	{
+		calender_right.click();
+	}
+	
+	public void clickLeftArrowCalender() 
+	{
+		calender_left.click();
+	}
+	
+	public void monthCalenderdisplay() 
+	{
+		calender_month.isDisplayed();
+	}
+		
+	public void clickCalenderIcon(){ 
+	
+		calender_icon.click();
+	}
+	
+	public void highligtedDatedisplay(){ 
+			highligted_date.isDisplayed();
+	}
+	
+	public void clickCancelBtn() 
+	{
+		cancel_btn.click();
+	}
+	
 //	public void clickPreviousBtn() 
 //	{
 //		previousPage_btn.click();
@@ -500,5 +551,5 @@ public class AssignmentPage {
 //		SelectAll_checkbox.click();	
 //	}
 
-
 }
+

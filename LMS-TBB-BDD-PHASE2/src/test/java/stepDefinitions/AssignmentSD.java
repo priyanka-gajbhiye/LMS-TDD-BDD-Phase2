@@ -341,7 +341,11 @@ public class AssignmentSD{
 
 	@Then("Admin should see new assignment details is added in the data table")
 	public void admin_should_see_new_assignment_details_is_added_in_the_data_table() {
-	    assignment.addAssignmentDisplay(toString());
+	    boolean t=assignment.addAssignmentDisplay(toString());
+	    if(t==true)
+			System.out.println("new assignment is Visible");
+			else
+				System.out.println("Not Visible");
 	}
 
 	@When("Admin enters all mandatory field values with invalid data from {string},{int} and clicks save button")
@@ -569,91 +573,82 @@ List<Map<String,String>> testData= reader.getData("/LMS-TDD-BDD-PHASE2/TestData/
 
 	@When("Admin clicks date from date picker")
 	public void admin_clicks_date_from_date_picker() {
-		
+		assignment.selectDate();
 	}
 
 	@Then("selected date should be their in class date text box")
 	public void selected_date_should_be_their_in_class_date_text_box() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    assignment.dateDisplay();
 	}
 
 	@Then("selected date should be in  mm\\/dd\\/yyyy format")
 	public void selected_date_should_be_in_mm_dd_yyyy_format() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    assignment.validDateFormat();
 	}
 
 	@When("Admin clicks right arrow in the date picker near month")
 	public void admin_clicks_right_arrow_in_the_date_picker_near_month() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    assignment.clickRightArrowCalender();
 	}
 
 	@Then("Next month calender should visible")
 	public void next_month_calender_should_visible() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    assignment.monthCalenderdisplay();
 	}
 
 	@When("Admin clicks left arrow in the date picker near month")
 	public void admin_clicks_left_arrow_in_the_date_picker_near_month() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		assignment.clickLeftArrowCalender();
 	}
 
 	@Then("previous month calender should visible")
 	public void previous_month_calender_should_visible() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		assignment.monthCalenderdisplay();
 	}
 
 	@When("Admin clicks date picker button")
 	public void admin_clicks_date_picker_button() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    assignment.clickCalenderIcon();
 	}
 
 	@Then("Admin should see current date is highled in the date picker")
 	public void admin_should_see_current_date_is_highled_in_the_date_picker() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		assignment.highligtedDatedisplay();
 	}
 
 	@When("Admin clicks date picker button and selects future date")
 	public void admin_clicks_date_picker_button_and_selects_future_date() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		assignment.clickCalenderIcon();
 	}
 
 	@Then("Admin should see selected date is highled in the date picker")
 	public void admin_should_see_selected_date_is_highled_in_the_date_picker() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		assignment.highligtedDatedisplay();
 	}
 
 	@When("Admin clicks Cancel button without entering values in the fields")
 	public void admin_clicks_cancel_button_without_entering_values_in_the_fields() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    assignment.clickCancelBtn();
 	}
 
 	@Then("Admin should land on manage assignment page")
 	public void admin_should_land_on_manage_assignment_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    assignment.Header();
 	}
 
 	@When("Admin clicks Cancel button entering values in the fields")
 	public void admin_clicks_cancel_button_entering_values_in_the_fields() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		assignment.clickCancelBtn();
 	}
 
 	@Then("Admin should land on manage assignment Page and validate new assignment is not created in the data table")
 	public void admin_should_land_on_manage_assignment_page_and_validate_new_assignment_is_not_created_in_the_data_table() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		boolean t= assignment.addAssignmentDisplay(toString());
+		if(t==true)
+			System.out.println("new assignment is Visible");
+			else
+				System.out.println("Not Visible");
+		
 	}
 
 }
