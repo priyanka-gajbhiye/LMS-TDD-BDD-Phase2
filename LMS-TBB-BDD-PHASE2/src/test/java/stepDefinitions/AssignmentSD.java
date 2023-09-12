@@ -334,10 +334,16 @@ public class AssignmentSD{
 		String programName = testData.get(rowNumber).get("Program Name");
 		String batchName = testData.get(rowNumber).get("Batch Name");
 		String assignmentName = testData.get(rowNumber).get("Assignment Name");
+		String assignmentDescription = testData.get(rowNumber).get("Assignment Description");
 		String gradeBy = testData.get(rowNumber).get("Grade By");
 		String assignmentDueDate = testData.get(rowNumber).get("Assignment DueDate");
+		String assignmentFile1 = testData.get(rowNumber).get("Assignment File1");
+		String assignmentFile2 = testData.get(rowNumber).get("Assignment File2");
+		String assignmentFile3 = testData.get(rowNumber).get("Assignment File3");
+		String assignmentFile4 = testData.get(rowNumber).get("Assignment File4");
+		String assignmentFile5 = testData.get(rowNumber).get("Assignment File5");
 		
-		assignment.fillValidMandatoryFields(programName, batchName, assignmentName, gradeBy, assignmentDueDate);
+		assignment.fillInvalidMandatoryFields(programName, batchName, assignmentName,assignmentDescription, gradeBy, assignmentDueDate,assignmentFile1,assignmentFile2,assignmentFile3,assignmentFile4,assignmentFile5);
 	    assignment.clickSave();
 	}
 
@@ -348,9 +354,17 @@ public class AssignmentSD{
 	}
 
 	@When("Admin enters all mandatory field values with invalid data from {string},{int} and clicks save button")
-	public void admin_enters_all_mandatory_field_values_with_invalid_data_from_and_clicks_save_button(String sheetName, Integer rowNumber) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void admin_enters_all_mandatory_field_values_with_invalid_data_from_and_clicks_save_button(String sheetName, Integer rowNumber) throws Exception, IOException {
+		List<Map<String,String>> testData= reader.getData("/LMS-TDD-BDD-PHASE2/TestData/Assignment.xlsx",sheetName);
+		
+		String programName = testData.get(rowNumber).get("Program Name");
+		String batchName = testData.get(rowNumber).get("Batch Name");
+		String assignmentName = testData.get(rowNumber).get("Assignment Name");
+		String gradeBy = testData.get(rowNumber).get("Grade By");
+		String assignmentDueDate = testData.get(rowNumber).get("Assignment DueDate");
+		
+		assignment.fillValidMandatoryFields(programName, batchName, assignmentName, gradeBy, assignmentDueDate);
+	    assignment.clickSave();
 	}
 
 	@Then("Error message should appear in alert")

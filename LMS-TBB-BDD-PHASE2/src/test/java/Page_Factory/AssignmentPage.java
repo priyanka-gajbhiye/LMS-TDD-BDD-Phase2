@@ -310,6 +310,22 @@ public class AssignmentPage {
 		save_btn.click();	
 	}
 	
+	public void fillInvalidMandatoryFields(String ProgramName,String batchNumber,String AssignmentName,String AssignmentDescription,String gradeBy,String AssignmentDueDate,String AssignmentFile1,String AssignmentFile2,String AssignmentFile3,String AssignmentFile4,String AssignmentFile5){
+		Select select1= new Select(program_dropdown);
+		select1.selectByVisibleText(ProgramName);
+		Select select2= new Select(batch_dropdown);
+		select2.selectByVisibleText(batchNumber);
+		assignment_name.sendKeys(AssignmentName);
+		assignment_description.sendKeys(AssignmentDescription);
+		grade_by.sendKeys(gradeBy);
+		assignment_due_date.sendKeys(AssignmentDueDate);
+		assignment_file1.sendKeys(AssignmentFile1);
+		assignment_file2.sendKeys(AssignmentFile2);
+		assignment_file3.sendKeys(AssignmentFile3);
+		assignment_file4.sendKeys(AssignmentFile4);
+		assignment_file5.sendKeys(AssignmentFile5);
+		}
+	
 	
 //	public void clickNextBtn() 
 //	{
