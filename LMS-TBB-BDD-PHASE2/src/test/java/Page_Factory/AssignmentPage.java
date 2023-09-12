@@ -56,6 +56,8 @@ public class AssignmentPage {
 	@FindBy(xpath="//*[@class='btn btn-save']") WebElement save_btn;
 	@FindBy(xpath="//*[@class='btn btn-cancel']") WebElement cancel_btn;
 	@FindBy(xpath="//*[@class='btn btn-close']") WebElement close_btn;
+	@FindBy (xpath="//*[@class='alert alert-message']") WebElement message;
+	
 //	@FindBy(xpath="//*[@class='btn btn-manage']") WebElement manage_btn;
 //	@FindBy(xpath="//*[@class='btn btn-assignment-name']") WebElement assignmentName_btn;
 //	@FindBy(xpath="//*[@class='btn btn-submit']") WebElement submit_btn;
@@ -65,7 +67,6 @@ public class AssignmentPage {
 //	@FindBy(xpath="//*[@class='btn btn-no']") WebElement no_btn;
 //	@FindBy(xpath="//*[@class='btn btn-delete-on-right']") WebElement deleteOnRight_btn;
 //	@FindBy(xpath="//*[@class='btn btn-delete-on-top-left']") WebElement deleteOnTopLeft_btn;
-//	@FindBy (xpath="//*[@class='alert alert-primary']") WebElement message;
 //	@FindBy (id="search_query_top") WebElement search_txt;
 //	@FindBy (xpath="//*[contains(text(),'Delete Confirm')]") WebElement DeletConfirm_Box;
 //	@FindBy (xpath="//table//thead//tr//th//input") WebElement SelectAll_checkbox;
@@ -295,7 +296,7 @@ public class AssignmentPage {
 		return close_btn.isDisplayed();
 	}
 	
-	public void fillValidMandatoryFields(String ProgramName,String batchNumber,String AssignmentName,String gradeBy,String AssignmentDueDate){
+	public boolean fillMandatoryFields(String ProgramName,String batchNumber,String AssignmentName,String gradeBy,String AssignmentDueDate){
 		Select select1= new Select(program_dropdown);
 		select1.selectByVisibleText(ProgramName);
 		Select select2= new Select(batch_dropdown);
@@ -303,14 +304,15 @@ public class AssignmentPage {
 		assignment_name.sendKeys(AssignmentName);
 		grade_by.sendKeys(gradeBy);
 		assignment_due_date.sendKeys(AssignmentDueDate);
-		}
+		addAssignmentDisplay(AssignmentName);
+	}
 	
 	public void clickSave() 
 	{
 		save_btn.click();	
 	}
 	
-	public void fillInvalidMandatoryFields(String ProgramName,String batchNumber,String AssignmentName,String AssignmentDescription,String gradeBy,String AssignmentDueDate,String AssignmentFile1,String AssignmentFile2,String AssignmentFile3,String AssignmentFile4,String AssignmentFile5){
+	public void fillAllFields(String ProgramName,String batchNumber,String AssignmentName,String AssignmentDescription,String gradeBy,String AssignmentDueDate,String AssignmentFile1,String AssignmentFile2,String AssignmentFile3,String AssignmentFile4,String AssignmentFile5){
 		Select select1= new Select(program_dropdown);
 		select1.selectByVisibleText(ProgramName);
 		Select select2= new Select(batch_dropdown);
@@ -324,8 +326,23 @@ public class AssignmentPage {
 		assignment_file3.sendKeys(AssignmentFile3);
 		assignment_file4.sendKeys(AssignmentFile4);
 		assignment_file5.sendKeys(AssignmentFile5);
+		addAssignmentDisplay(AssignmentName);
+	}
+	
+	public boolean addAssignmentDisplay(String AssignmentName) {
+		boolean isFound=false;
+		for(WebElement row:Rows) {
+			if(row.getText().equals(AssignmentName))
+					isFound=true;
+			break;
+		}
+		return isFound;
 		}
 	
+	public String Message() {
+		
+			return message.getText();
+	} 
 	
 //	public void clickNextBtn() 
 //	{
