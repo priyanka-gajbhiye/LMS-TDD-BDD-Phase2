@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 import utilities.ConfigfileReader;
 
@@ -294,6 +295,20 @@ public class AssignmentPage {
 		return close_btn.isDisplayed();
 	}
 	
+	public void fillValidMandatoryFields(String ProgramName,String batchNumber,String AssignmentName,String gradeBy,String AssignmentDueDate){
+		Select select1= new Select(program_dropdown);
+		select1.selectByVisibleText(ProgramName);
+		Select select2= new Select(batch_dropdown);
+		select2.selectByVisibleText(batchNumber);
+		assignment_name.sendKeys(AssignmentName);
+		grade_by.sendKeys(gradeBy);
+		assignment_due_date.sendKeys(AssignmentDueDate);
+		}
+	
+	public void clickSave() 
+	{
+		save_btn.click();	
+	}
 	
 	
 //	public void clickNextBtn() 

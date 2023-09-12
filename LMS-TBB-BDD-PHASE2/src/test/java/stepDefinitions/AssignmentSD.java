@@ -151,7 +151,7 @@ public class AssignmentSD{
 
 	@When("Admin enters assignment name into search box from excel sheet {string} and {int}")
 	public void admin_enters_assignment_name_into_search_box_from_excel_sheet_and(String string, Integer int1) throws InvalidFormatException, IOException {
-		List<Map<String,String>> testData=reader.getData(".\\TestData\\Assignment.xlsx", "Assignment");
+		List<Map<String,String>> testData=reader.getData("/LMS-TDD-BDD-PHASE2/TestData/Assignment.xlsx", "Assignment");
 		String assignmentName=testData.get(int1).get("assignmentName");
 		assignment.textSearch(assignmentName);
 		
@@ -321,14 +321,24 @@ public class AssignmentSD{
 	
 	@Given("Admin is in  assignment details popup window")
 	public void admin_is_in_assignment_details_popup_window() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		String actual_Msg = assignment.popUpHeader();
+		Assert.assertEquals("Assignment Details",actual_Msg);
+		System.out.println("The pop up window is open");
 	}
 
-	@When("Admin enters all mandatory field values with valid data and clicks save button")
-	public void admin_enters_all_mandatory_field_values_with_valid_data_and_clicks_save_button() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	@When("Admin enters all mandatory field values with valid data from {string},{int} and clicks save button")
+	public void admin_enters_all_mandatory_field_values_with_valid_data_from_and_clicks_save_button(String sheetName, Integer rowNumber) throws Exception, IOException {
+		
+		List<Map<String,String>> testData= reader.getData("/LMS-TDD-BDD-PHASE2/TestData/Assignment.xlsx", sheetName);
+		
+		String programName = testData.get(rowNumber).get("Program Name");
+		String batchName = testData.get(rowNumber).get("Batch Name");
+		String assignmentName = testData.get(rowNumber).get("Assignment Name");
+		String gradeBy = testData.get(rowNumber).get("Grade By");
+		String assignmentDueDate = testData.get(rowNumber).get("Assignment DueDate");
+		
+		assignment.fillValidMandatoryFields(programName, batchName, assignmentName, gradeBy, assignmentDueDate);
+	    assignment.clickSave();
 	}
 
 	@Then("Admin should see new assignment details is added in the data table")
@@ -337,8 +347,8 @@ public class AssignmentSD{
 	    throw new io.cucumber.java.PendingException();
 	}
 
-	@When("Admin enters all mandatory field values with invalid data and clicks save button")
-	public void admin_enters_all_mandatory_field_values_with_invalid_data_and_clicks_save_button() {
+	@When("Admin enters all mandatory field values with invalid data from {string},{int} and clicks save button")
+	public void admin_enters_all_mandatory_field_values_with_invalid_data_from_and_clicks_save_button(String sheetName, Integer rowNumber) {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
@@ -349,20 +359,20 @@ public class AssignmentSD{
 	    throw new io.cucumber.java.PendingException();
 	}
 
-	@When("Admin enters values in all fields with valid data and clicks save button \\(Program name, batch number,Assignment Name, Assignment Description, grade by, Assignment due date, Assignment File1, Assignment file {int}, Assignment file {int}, Assignment file {int}, Assignment file {int})")
-	public void admin_enters_values_in_all_fields_with_valid_data_and_clicks_save_button_program_name_batch_number_assignment_name_assignment_description_grade_by_assignment_due_date_assignment_file1_assignment_file_assignment_file_assignment_file_assignment_file(Integer int1, Integer int2, Integer int3, Integer int4) {
+	@When("Admin enters values in all fields with valid data from {string},{int} and clicks save button")
+	public void admin_enters_values_in_all_fields_with_valid_data_from_and_clicks_save_button(String sheetName, Integer rowNumber) {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
 
-	@When("Admin enters with invalid data in optional fields and clicks save button \\(Assignment File1, Assignment file {int}, Assignment file {int}, Assignment file {int}, Assignment file {int})")
-	public void admin_enters_with_invalid_data_in_optional_fields_and_clicks_save_button_assignment_file1_assignment_file_assignment_file_assignment_file_assignment_file(Integer int1, Integer int2, Integer int3, Integer int4) {
+	@When("Admin enters with invalid data in optional fields from {string},{int} and clicks save button")
+	public void admin_enters_with_invalid_data_in_optional_fields_from_and_clicks_save_button(String sheetName, Integer rowNumber) {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
 
-	@When("Admin enters  data missing value in program name and clicks save button \\(batch number,Assignment Name, Assignment Description, grade by, Assignment due date, Assignment File1, Assignment file {int}, Assignment file {int}, Assignment file {int}, Assignment file {int})")
-	public void admin_enters_data_missing_value_in_program_name_and_clicks_save_button_batch_number_assignment_name_assignment_description_grade_by_assignment_due_date_assignment_file1_assignment_file_assignment_file_assignment_file_assignment_file(Integer int1, Integer int2, Integer int3, Integer int4) {
+	@When("Admin enters  data missing value in program name from {string},{int} and clicks save button")
+	public void admin_enters_data_missing_value_in_program_name_from_and_clicks_save_button(String sheetName, Integer rowNumber) {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
@@ -373,8 +383,8 @@ public class AssignmentSD{
 	    throw new io.cucumber.java.PendingException();
 	}
 
-	@When("Admin enters data missing value in Batch number and clicks save button \\(Program name,Assignment Name, Assignment Description, grade by, Assignment due date, Assignment File1, Assignment file {int}, Assignment file {int}, Assignment file {int}, Assignment file {int})")
-	public void admin_enters_data_missing_value_in_batch_number_and_clicks_save_button_program_name_assignment_name_assignment_description_grade_by_assignment_due_date_assignment_file1_assignment_file_assignment_file_assignment_file_assignment_file(Integer int1, Integer int2, Integer int3, Integer int4) {
+	@When("Admin enters data missing value in Batch number from {string},{int} and clicks save button")
+	public void admin_enters_data_missing_value_in_batch_number_from_and_clicks_save_button(String sheetName, Integer rowNumber) {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
@@ -385,8 +395,8 @@ public class AssignmentSD{
 	    throw new io.cucumber.java.PendingException();
 	}
 
-	@When("Admin enters data missing value in Assignment name and clicks save button \\(Program name, batch number,Assignment Name,  grade by, Assignment Due date )")
-	public void admin_enters_data_missing_value_in_assignment_name_and_clicks_save_button_program_name_batch_number_assignment_name_grade_by_assignment_due_date() {
+	@When("Admin enters data missing value in Assignment name from {string},{int} and clicks save button")
+	public void admin_enters_data_missing_value_in_assignment_name_from_and_clicks_save_button(String sheetName, Integer rowNumber) {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
@@ -397,8 +407,8 @@ public class AssignmentSD{
 	    throw new io.cucumber.java.PendingException();
 	}
 
-	@When("Admin enters data missing value in Assignment due date and clicks save button \\( Program name, batch number,Assignment Name, grade by)")
-	public void admin_enters_data_missing_value_in_assignment_due_date_and_clicks_save_button_program_name_batch_number_assignment_name_grade_by() {
+	@When("Admin enters data missing value in Assignment due date from {string},{int} and clicks save button")
+	public void admin_enters_data_missing_value_in_assignment_due_date_from_and_clicks_save_button(String sheetName, Integer rowNumber) {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
@@ -409,8 +419,8 @@ public class AssignmentSD{
 	    throw new io.cucumber.java.PendingException();
 	}
 
-	@When("Admin enters data missing value in grade by  and clicks save button \\(Program name, batch number,Assignment Name, Assignment due date)")
-	public void admin_enters_data_missing_value_in_grade_by_and_clicks_save_button_program_name_batch_number_assignment_name_assignment_due_date() {
+	@When("Admin enters data missing value in grade by  from {string},{int} and clicks save button")
+	public void admin_enters_data_missing_value_in_grade_by_from_and_clicks_save_button(String sheetName, Integer rowNumber) {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
@@ -421,8 +431,8 @@ public class AssignmentSD{
 	    throw new io.cucumber.java.PendingException();
 	}
 
-	@When("Admin enters passed date in the due date field and clicks save button \\( Program name, batch number,Assignment Name,  grade by, Assignment Due date )")
-	public void admin_enters_passed_date_in_the_due_date_field_and_clicks_save_button_program_name_batch_number_assignment_name_grade_by_assignment_due_date() {
+	@When("Admin enters passed date in the due date field from {string},{int} and clicks save button")
+	public void admin_enters_passed_date_in_the_due_date_field_from_and_clicks_save_button(String sheetName, Integer rowNumber) {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
@@ -523,6 +533,4 @@ public class AssignmentSD{
 	    throw new io.cucumber.java.PendingException();
 	}
 
-	
-	
 }

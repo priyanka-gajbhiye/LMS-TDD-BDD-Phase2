@@ -5,53 +5,91 @@ Feature: Add new assignment
 
   Scenario: Validate admin able to add new assignment with valid data in mandatory fields
     Given Admin is in  assignment details popup window
-    When Admin enters all mandatory field values with valid data and clicks save button
+    When Admin enters all mandatory field values with valid data from "<SheetName>",<RowNumber> and clicks save button
+    #( Program name, batch number,Assignment Name, grade by, Assignment due date)
     Then Admin should see new assignment details is added in the data table
+    Examples: 
+      | SheetName | RowNumber |
+      | Sheet2    |         3 |
     
     Scenario: Validate admin able to add new assignment with invalid data in mandatory fields
     Given Admin is in  assignment details popup window
-    When Admin enters all mandatory field values with invalid data and clicks save button
+    When Admin enters all mandatory field values with invalid data from "<SheetName>",<RowNumber> and clicks save button
     Then Error message should appear in alert
+    Examples: 
+      | SheetName | RowNumber |
+      | Sheet2    |         4 |
     
     Scenario: Validate admin able to add new assignment with valid data  in all fields
     Given Admin is in  assignment details popup window
-    When Admin enters values in all fields with valid data and clicks save button (Program name, batch number,Assignment Name, Assignment Description, grade by, Assignment due date, Assignment File1, Assignment file 2, Assignment file 3, Assignment file 4, Assignment file 5)
+    When Admin enters values in all fields with valid data from "<SheetName>",<RowNumber> and clicks save button
     Then Admin should see new assignment details is added in the data table
+    Examples: 
+      | Sheetname | RowNumber |
+      | Sheet1    |         1 |
        
     Scenario: Validate admin able to add new assignment with invalid data  in optional fields
     Given Admin is in  assignment details popup window
-    When Admin enters with invalid data in optional fields and clicks save button (Assignment File1, Assignment file 2, Assignment file 3, Assignment file 4, Assignment file 5)
+    When Admin enters with invalid data in optional fields from "<SheetName>",<RowNumber> and clicks save button 
+    #(Assignment File1, Assignment file 2, Assignment file 3, Assignment file 4, Assignment file 5)
     Then Error message should appear in alert
+    Examples: 
+      | Sheetname | RowNumber |
+      | Sheet1    |         1 |
     
     Scenario: Validate admin able to add new assignment missing program name
     Given Admin is in  assignment details popup window
-    When Admin enters  data missing value in program name and clicks save button (batch number,Assignment Name, Assignment Description, grade by, Assignment due date, Assignment File1, Assignment file 2, Assignment file 3, Assignment file 4, Assignment file 5)
+    When Admin enters  data missing value in program name from "<SheetName>",<RowNumber> and clicks save button 
+    #(batch number,Assignment Name, Assignment Description, grade by, Assignment due date, Assignment File1, Assignment file 2, Assignment file 3, Assignment file 4, Assignment file 5)
     Then Program Name is missing
+    Examples: 
+      | Sheetname | RowNumber |
+      | Sheet1    |         1 |
     
     Scenario: Validate admin able to add new assignment missing batch number
     Given Admin is in  assignment details popup window
-    When Admin enters data missing value in Batch number and clicks save button (Program name,Assignment Name, Assignment Description, grade by, Assignment due date, Assignment File1, Assignment file 2, Assignment file 3, Assignment file 4, Assignment file 5)
+    When Admin enters data missing value in Batch number from "<SheetName>",<RowNumber> and clicks save button 
+    #(Program name,Assignment Name, Assignment Description, grade by, Assignment due date, Assignment File1, Assignment file 2, Assignment file 3, Assignment file 4, Assignment file 5)
     Then Batch number is missing
+    Examples: 
+      | Sheetname | RowNumber |
+      | Sheet1    |         1 |
     
     Scenario: Validate admin able to add new assignment missing assignment name
     Given Admin is in  assignment details popup window
-    When Admin enters data missing value in Assignment name and clicks save button (Program name, batch number,Assignment Name,  grade by, Assignment Due date )
+    When Admin enters data missing value in Assignment name from "<SheetName>",<RowNumber> and clicks save button 
+    #(Program name, batch number,Assignment Name,  grade by, Assignment Due date )
     Then Assignment name is missing
+    Examples: 
+      | Sheetname | RowNumber |
+      | Sheet1    |         1 |
     
     Scenario: Validate admin able to add new assignment missing due date
     Given Admin is in  assignment details popup window
-    When Admin enters data missing value in Assignment due date and clicks save button ( Program name, batch number,Assignment Name, grade by)
+    When Admin enters data missing value in Assignment due date from "<SheetName>",<RowNumber> and clicks save button 
+    #( Program name, batch number,Assignment Name, grade by)
     Then Assignment due date is missing
+    Examples: 
+      | Sheetname | RowNumber |
+      | Sheet1    |         1 |
     
     Scenario: Validate admin able to add new assignment missing grade by
     Given Admin is in  assignment details popup window
-    When Admin enters data missing value in grade by  and clicks save button (Program name, batch number,Assignment Name, Assignment due date)
+    When Admin enters data missing value in grade by  from "<SheetName>",<RowNumber> and clicks save button 
+    #(Program name, batch number,Assignment Name, Assignment due date)
     Then Grade by is missing
+    Examples: 
+      | Sheetname | RowNumber |
+      | Sheet1    |         1 |
     
     Scenario: Validate  admin able to add new assignment passing past date  
     Given Admin is in  assignment details popup window
-    When Admin enters passed date in the due date field and clicks save button ( Program name, batch number,Assignment Name,  grade by, Assignment Due date )
+    When Admin enters passed date in the due date field from "<SheetName>",<RowNumber> and clicks save button 
+    #( Program name, batch number,Assignment Name,  grade by, Assignment Due date )
     Then Assignment cannot be created for the passed date
+    Examples: 
+      | Sheetname | RowNumber |
+      | Sheet1    |         1 |
     
     Scenario: Validate date picker 
     Given Admin is in  assignment details popup window
