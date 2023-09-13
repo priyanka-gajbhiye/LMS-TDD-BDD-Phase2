@@ -1,4 +1,4 @@
-Background: Admin logged into LMS portal and clicks assignment button on the navigation bar 
+#Background: Admin logged into LMS portal and clicks assignment button on the navigation bar 
 
 		Feature: Delete multiple class validation
 

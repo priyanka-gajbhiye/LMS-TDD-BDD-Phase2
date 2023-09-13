@@ -1,5 +1,7 @@
 package Page_Factory;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -332,7 +334,7 @@ public class AssignmentPage {
 		assignment_file4.sendKeys(AssignmentFile4);
 		assignment_file5.sendKeys(AssignmentFile5);
 		addAssignmentDisplay(AssignmentName);
-		rowDeleted(AssignmentName);
+		//rowDeleted(AssignmentName);
 	}
 	
 	public boolean addAssignmentDisplay(String AssignmentName) {
@@ -442,6 +444,47 @@ public class AssignmentPage {
 	}
 	
 	
+	public void clickCheckbox() {
+		checkbox.click();
+	}
+	
+	public boolean deleteMultiRowBtnEnabled() {
+		return deleteMuti_btn.isEnabled();
+	}
+	
+	
+	public void clickSortDesc() 
+	{
+		sort_btn.click();	
+	}
+	
+	public void clickSortAsc() 
+	{
+		sort_btn.click();
+		sort_btn.click();	
+	}
+	
+	public List<String> ascSorted() 
+	{
+    List<String> expectedData = new ArrayList<>();
+    for (WebElement element : Rows) {
+    	expectedData.add(element.getText());
+    }    
+    // Create a copy of the data for sorting
+    List<String> sortedData = new ArrayList<>(expectedData);
+    for(String s:expectedData)
+    	sortedData.add(s);
+    // Check if the data is in ascending order
+    Collections.sort(sortedData);
+    return sortedData;
+	}
+
+	public void descSorted(List<String> sortedData) 
+	{	// Check if the data is in descending order
+		sortedData.sort(Collections.reverseOrder());
+	}
+	
+	
 //	public void clickPreviousBtn() 
 //	{
 //		previousPage_btn.click();
@@ -484,11 +527,6 @@ public class AssignmentPage {
 //	public void clickGradeAscending() 
 //	{
 //		gradeAscending_btn.click();	
-//	}
-//	
-//	public void clickNameDescending() 
-//	{
-//		nameDescending_btn.click();	
 //	}
 //	
 //	public void clickDescriptionDescending() 
@@ -558,16 +596,7 @@ public class AssignmentPage {
 //	public String DeleteConfirmBox(String text) {
 //		return DeletConfirm_Box.getText();
 //	}
-//
-//	public boolean deleteMultiRowBtndisplay() {
-//		return deleteMuti_btn.isEnabled();
-//	}
-//
-//	public void clickCheckbox() {
-//		checkbox.click();
-//		
-//	}
-//
+
 //	public void clickAllCheckbox() {
 //		SelectAll_checkbox.click();	
 //	}

@@ -1,4 +1,4 @@
-Background:  Logged on the LMS portal as Admin
+#Background:  Logged on the LMS portal as Admin
 
 	Feature: Pagination in manage assignment
 	
