@@ -12,7 +12,7 @@ Feature: DashBoard Page
     Then Maximum navigation time in milliseconds, defaults to 30 seconds
 
   Scenario: Verify broken link
-    Then HTTP response >= 400 the link is broken
+    Then HTTP response "400" the link is broken at dashboard
 
   Scenario: Verify LMS title
     Then Admin should see "LMS -Learning management system" as title

@@ -9,12 +9,12 @@ import io.cucumber.testng.CucumberOptions;
 monochrome = false, // console output
 tags = "", // tags from feature file
 features = { "src/test/resources/features" }, // location of feature files
-glue = { "StepDefinition","applicationHooks" }) // location of step definition files
+glue = { "stepDefinition","applicationHooks" }) // location of step definition files
 
 public class RunnerFile extends AbstractTestNGCucumberTests {
 	@DataProvider(parallel = false)
 	public Object[][] scenarios() {
-
+			
 		return super.scenarios();
 	}
 
