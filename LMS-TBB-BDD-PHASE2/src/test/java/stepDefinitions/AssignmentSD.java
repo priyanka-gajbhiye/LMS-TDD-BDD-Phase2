@@ -1,12 +1,14 @@
 package stepDefinitions;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Assert;
+import org.junit.runner.manipulation.Ordering;
 import Page_Factory.AssignmentPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -15,6 +17,7 @@ import utilities.ExcelReader;
 
 public class AssignmentSD{
 	
+	private static final String String = null;
 	AssignmentPage assignment=new AssignmentPage(); 
 	ExcelReader reader = new ExcelReader();
 	
@@ -230,8 +233,8 @@ public class AssignmentSD{
 	    throw new io.cucumber.java.PendingException();
 	}
 
-	////////////////////////////////////////////////////
-	//Assignment Detail Feature
+	///////////////////////////////////////////////////////////////////////////////
+	////////////////////////Assignment Detail Feature/////////////////////////////////
 	
 	@Given("Admin is on manage assignment Page")
 	public void admin_is_on_manage_assignment_page() {
@@ -820,12 +823,17 @@ List<Map<String,String>> testData= reader.getData("/LMS-TDD-BDD-PHASE2/TestData/
 		assertEquals(tempList, result);
 		System.out.println("Data in ascending order.");
 	    
-	        System.out.println("Data is not in ascending alphabetical order.");
+		//boolean isSorted=assertTrue(Ordering.natural().isOrdered(result)); 
+		//Checks for natural(ascending) order
 	}
 	
-	@Then("Admin should see data table sorted in descending order")
-	public void admin_should_see_data_table_sorted_in_descending_order() {
+	@Then("Admin should see data table sorted in {string} order")
+	public void admin_should_se_data_table_sorted_in_order(String result) {
 		assignment.descSorted(null);		
+		System.out.println("Data is not in ascending alphabetical order.");
+		
+		//assertTrue(Ordering.reverse().isOrdered(result)); 
+		//Checks for descending order
 	}
 	
 	
@@ -835,80 +843,123 @@ List<Map<String,String>> testData= reader.getData("/LMS-TDD-BDD-PHASE2/TestData/
 			
 	@When("Admin clicks {string} button on the navigation bar")
 	public void admin_clicks_button_on_the_navigation_bar(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    assignment.clickAssignmentPage();
+	}
+	
+	@Then("Data table should display {string} page  when entries available")
+	public void data_table_should_display_page_when_entries_available(String string) {
+		String actual_Msg = assignment.pagesDisplay();
+		Assert.assertEquals(actual_Msg,string);
 	}
 	
 	@Then("Right arrow should be enabled in page one  when entries are more than {int} available")
 	public void right_arrow_should_be_enabled_in_page_one_when_entries_are_more_than_available(Integer int1) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    assignment.rightArrowDisplay();
 	}
 	
 	@Then("Left arrow should be disabled in page one  when entries are more than {int} available")
 	public void left_arrow_should_be_disabled_in_page_one_when_entries_are_more_than_available(Integer int1) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    assignment.leftArrowDisplay();
 	}
 	
 	@Then("Right arrow should be enabled in page two when entries are more than {int} available")
 	public void right_arrow_should_be_enabled_in_page_two_when_entries_are_more_than_available(Integer int1) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    assignment.rightArrowDisplay(); 
+	    
 	}
 	
 	@Then("Left arrow should be enabled in page two")
 	public void left_arrow_should_be_enabled_in_page_two() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-	
-	@Then("Data table should display  page {int}  when entries available")
-	public void data_table_should_display_page_when_entries_available(Integer int1) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    assignment.leftArrowDisplay();
 	}
 	
 	@Then("When entries are more than {int} in data table pagination controls enabled")
 	public void when_entries_are_more_than_in_data_table_pagination_controls_enabled(Integer int1) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		assignment.leftArrowDisplay();
+		assignment.rightArrowDisplay();
 	}
 	
 	@Then("When entries are less than {int} in data table pagination controls disabled")
 	public void when_entries_are_less_than_in_data_table_pagination_controls_disabled(Integer int1) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-	
-	@Given("Admin is in add assignment details popup window")
-	public void admin_is_in_add_assignment_details_popup_window() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		assignment.leftArrowDisplay();
+		assignment.rightArrowDisplay();
 	}
 	
 	@When("Admin creates {int} new assignment")
 	public void admin_creates_new_assignment(Integer int1) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		while(int1<=6) {
+	    assignment.addAssignmentDisplay(String);
+		int1++;}
 	}
 	
 	@Then("When total class entries above {int} next page is enabled \\( On multiples of {int} new page will be enabled)")
 	public void when_total_class_entries_above_next_page_is_enabled_on_multiples_of_new_page_will_be_enabled(Integer int1, Integer int2) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    assignment.nextPageDisplay();
 	}
 	
 	@When("Admin creates less than or equal to {int} new  assignment")
 	public void admin_creates_less_than_or_equal_to_new_assignment(Integer int1) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		while(int1<=5) {
+		    assignment.addAssignmentDisplay(String);
+			int1++;}
 	}
 	
 	@Then("When total class entries  {int} or below next page is disabled")
 	public void when_total_class_entries_or_below_next_page_is_disabled(Integer int1) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-}
+		assignment.nextPageDisplay();
+	}
+	
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////Navigation Feature////////////////////////////////////
+
+
+	
+	@When("Admin clicks {string} button in the navigation bar")
+	public void admin_clicks_button_in_the_navigation_bar(String string) {
+	    assignment.clickButton(string);
+	}
+
+	@Then("Admin should able to land on student page")
+	public void admin_should_able_to_land_on_student_page() {
+		String actual_Msg = assignment.Header();
+		Assert.assertEquals(actual_Msg,"Manage Student");
+	}
+
+	@Then("Admin should able to land on program page")
+	public void admin_should_able_to_land_on_program_page() {
+		String actual_Msg = assignment.Header();
+		Assert.assertEquals(actual_Msg,"Manage Program");
+	}
+
+	@Then("Admin should able to land on batch page")
+	public void admin_should_able_to_land_on_batch_page() {
+		String actual_Msg = assignment.Header();
+		Assert.assertEquals(actual_Msg,"Manage Batch");
+	}
+
+	@Then("Admin should able to land on user page")
+	public void admin_should_able_to_land_on_user_page() {
+		String actual_Msg = assignment.Header();
+		Assert.assertEquals(actual_Msg,"Manage User");
+	}
+
+	@Then("Admin should able to land on class page")
+	public void admin_should_able_to_land_on_class_page() {
+		String actual_Msg = assignment.Header();
+		Assert.assertEquals(actual_Msg,"Manage Class");
+	}
+
+	@Then("Admin should able to land on Attendance page")
+	public void admin_should_able_to_land_on_attendance_page() {
+		String actual_Msg = assignment.Header();
+		Assert.assertEquals(actual_Msg,"Manage Attendence");
+	}
+
+	@Then("Admin should able to land on login page")
+	public void admin_should_able_to_land_on_login_page() {
+		String actual_Msg = assignment.Header();
+		Assert.assertEquals(actual_Msg,"Please login to LMS application");
+	}
 	
 }

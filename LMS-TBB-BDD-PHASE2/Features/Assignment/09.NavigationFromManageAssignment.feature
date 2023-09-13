@@ -1,4 +1,4 @@
-Background:  Admin is manage assignment page after logged in
+#Background:  Admin is manage assignment page after logged in
 
 	Feature: Navigation function validation from manage assignment page to other pages  
 

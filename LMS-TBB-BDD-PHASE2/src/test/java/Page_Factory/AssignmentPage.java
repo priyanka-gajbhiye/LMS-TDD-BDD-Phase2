@@ -66,19 +66,15 @@ public class AssignmentPage {
 	@FindBy (xpath="//*[@class='date-picker-highligted')]/div[@class='v-btn__content']") WebElement highligted_date;
 	@FindBy (xpath="//*[contains(text(),'Delete Confirm')]") WebElement DeletConfirm_Box;
 	@FindBy(xpath="//*[@class='btn btn-yes']") WebElement yes_btn;
-	@FindBy(xpath="//*[@class='btn btn-no']") WebElement no_btn;
-	
-//	@FindBy(xpath="//*[@class='btn btn-manage']") WebElement manage_btn;
-//	@FindBy(xpath="//*[@class='btn btn-assignment-name']") WebElement assignmentName_btn;
-//	@FindBy(xpath="//*[@class='btn btn-submit']") WebElement submit_btn;
-//	@FindBy(xpath="//*[@class='btn btn-clear']") WebElement clear_btn;
-//	@FindBy(xpath="//*[@href='swithc_account_link']") WebElement switchAccount_link;
-//	@FindBy(xpath="//*[@class='btn btn-delete-on-right']") WebElement deleteOnRight_btn;
-//	@FindBy(xpath="//*[@class='btn btn-delete-on-top-left']") WebElement deleteOnTopLeft_btn;
-//	@FindBy (id="search_query_top") WebElement search_txt;
-//	@FindBy (xpath="//table//thead//tr//th//input") WebElement SelectAll_checkbox;
-//	@FindBy (xpath="//button//span[text()=' Delete']") WebElement deleteMuti_btn;
-	
+	@FindBy(xpath="//*[@class='btn btn-no']") WebElement no_btn;	
+	@FindBy(xpath="//*[@class='btn btn-student']") WebElement student_btn;
+	@FindBy(xpath="//*[@class='btn btn-program']") WebElement program_btn;
+	@FindBy(xpath="//*[@class='btn btn-batch']") WebElement batch_btn;
+	@FindBy(xpath="//*[@class='btn btn-class']") WebElement class_btn;
+	@FindBy(xpath="//*[@class='btn btn-user']") WebElement user_btn;
+	@FindBy(xpath="//*[@class='btn btn-attendence']") WebElement attendence_btn;
+	@FindBy(xpath="//*[@class='btn btn-logout']") WebElement logout_btn;
+
 	
 	//constructor
 	public AssignmentPage() {
@@ -484,122 +480,73 @@ public class AssignmentPage {
 		sortedData.sort(Collections.reverseOrder());
 	}
 	
+	public void rightArrowDisplay() 
+	{
+		boolean goNext = false;
+		do {
+		boolean paginationNext = nextPage_btn.isEnabled();
+        goNext = paginationNext;
+        if (paginationNext) {
+            nextPage_btn.click();
+        }
+      } while (goNext);
+	}	
 	
-//	public void clickPreviousBtn() 
-//	{
-//		previousPage_btn.click();
-//	}
-//	
-//	public void clickLastPageBtn() 
-//	{
-//		lastPage_btn.click();
-//	}
-//
-//	public void clickFirstPageBtn() 
-//	{
-//		firstPage_btn.click();
-//	}
-//	
-//	public void clickSearchBtn(String input) 
-//	{
-//		search_btn.sendKeys(input);	
-//	}
-//	
-//	public void tableValue() {
-//
-//		int col = colums.size();
-//		int row = Row.size();
-//		for(int j=1;j<=col;j++) {			
-//			for(int i=1;i<=row;i++)
-//			{
-//				System.out.println(String.valueOf(i));
-//			}
-//		}
-//	}
-//	
-//	
-//	
-//	public void clickDueDateAscending() 
-//	{
-//		duedateAscending_btn.click();	
-//	}
-//	
-//	public void clickGradeAscending() 
-//	{
-//		gradeAscending_btn.click();	
-//	}
-//	
-//	public void clickDescriptionDescending() 
-//	{
-//		descriptionDescending_btn.click();	
-//	}
-//	
-//	public void clickDueDateDescending() 
-//	{
-//		duedateDescending_btn.click();	
-//	}
-//	
-//	public void clickGradeDescending() 
-//	{
-//		gradeDescending_btn.click();	
-//	}
-//	
-//	public void clickAddNewAssignment() 
-//	{
-//		addNewAssignment_btn.click();	
-//	}
-//	
-//	public void clickManage() 
-//	{
-//		manage_btn.click();	
-//	}
-//	
-//	public void clickAssignmentName() 
-//	{
-//		assignmentName_btn.click();	
-//	}
-//	
-//	public void clickAssignment() 
-//	{
-//		assignment_btn.click();	
-//	}
-//	
-//	public void clickSubmit() 
-//	{
-//		submit_btn.click();	
-//	}
-//	
-//	public void clickClear() 
-//	{
-//		clear_btn.click();	
-//	}
-//	
-//	public void clickSwitchAccount() 
-//	{
-//		switchAccount_link.click();	
-//	}
-//	
-//	public void clickDelete() 
-//	{
-//		delete_btn.click();	
-//	}
-//	public void clickDeleteOnTopLeft() 
-//	{
-//		deleteOnTopLeft_btn.click();	
-//	}
-//	
-//	public String Message(String expectedmsg) {
-//		
-//			return message.getText();
-//	}
-//
-//	public String DeleteConfirmBox(String text) {
-//		return DeletConfirm_Box.getText();
-//	}
+	public void leftArrowDisplay() 
+	{
+		boolean goPrevious = false;
+		do {
+		boolean paginationNext = previousPage_btn.isEnabled();
+        goPrevious = paginationNext;
+        if (paginationNext) {
+            previousPage_btn.click();
+        }
+           } while (goPrevious);
+	}	
+	
+	public String pagesDisplay() {
+		if(Rows.size()<=5)
+			return firstPage_btn.getText();
+		return "";
+	   }
 
-//	public void clickAllCheckbox() {
-//		SelectAll_checkbox.click();	
-//	}
+	public boolean nextPageDisplay() {
+		for(int i=0;i<Rows.size();i+=5) {
+            // If there are more than 5 rows, the "Next" button should be enabled
+            if (nextPage_btn.isEnabled()) {
+                System.out.println("Next button is enabled.");
+                return true;
+            } else {
+                System.out.println("Next button is not enabled");
+                return false;
+            }
+        }
+		return false; 
+	}
+	
+	public void clickButton(String string) {
+		if(string=="Student")
+			student_btn.click();
+		if(string=="Program")
+			program_btn.click();
+		if(string=="Batch")
+			batch_btn.click();
+		if(string=="User")
+			user_btn.click();
+		if(string=="Class")
+			class_btn.click();
+		if(string=="Attendence")
+			attendence_btn.click();
+		if(string=="Logout")
+			logout_btn.click();
+		}
+		
+	public void PageDisplay() 
+	{
+		
+	}
+
+
 
 }
 
