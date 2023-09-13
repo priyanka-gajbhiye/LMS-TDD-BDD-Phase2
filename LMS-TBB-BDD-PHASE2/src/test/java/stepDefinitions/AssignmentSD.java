@@ -2,7 +2,6 @@ package stepDefinitions;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -154,83 +153,108 @@ public class AssignmentSD{
 				System.out.println("Not Visible");
 	}
 
+	///////SearchBox/////
+	
 	@When("Admin enters assignment name into search box from excel sheet {string} and {int}")
 	public void admin_enters_assignment_name_into_search_box_from_excel_sheet_and(String string, Integer int1) throws InvalidFormatException, IOException {
 		List<Map<String,String>> testData=reader.getData("/LMS-TDD-BDD-PHASE2/TestData/Assignment.xlsx", "Assignment");
-		String assignmentName=testData.get(int1).get("assignmentName");
-		assignment.textSearch(assignmentName);
+		String assignmentname=testData.get(int1).get("assignmentName");
+		assignment.textSearch(assignmentname);
 		
 	}
 
 	@Then("Displays entries with that assignment name")
 	public void displays_entries_with_that_assignment_name() {
-	    assignment.textSearchdisplayed();
+	    boolean t=assignment.textSearchdisplayed();
+	    if(t==true)
+			System.out.println("Searched Text is Visible");
+			else
+				System.out.println("Searched Text Not Visible");
 	}
 
-	@When("Admin enters assignment name is not existing the table into search box")
-	public void admin_enters_assignment_name_is_not_existing_the_table_into_search_box() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	@When("Admin enters assignment name is not existing the table into search box from excel sheet {string} and {int}")
+	public void admin_enters_assignment_name_is_not_existing_the_table_into_search_box_from_excel_sheet_and(String string, Integer int1) throws Exception, IOException {
+		List<Map<String,String>> testData=reader.getData("/LMS-TDD-BDD-PHASE2/TestData/Assignment.xlsx", "Assignment");
+		String assignmentname=testData.get(int1).get("assignmentName");
+		assignment.textSearch(assignmentname);
 	}
 
 	@Then("Displays empty details in the data table")
 	public void displays_empty_details_in_the_data_table() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		boolean t=assignment.textSearchdisplayed();
+	    if(t==true)
+			System.out.println("Searched Text is Visible");
+			else
+				System.out.println("Searched Text Not Visible");
 	}
 
-	@When("Admin enters assignment description into search box")
-	public void admin_enters_assignment_description_into_search_box() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	@When("Admin enters assignment description into search box from excel sheet {string} and {int}")
+	public void admin_enters_assignment_description_into_search_box_from_excel_sheet_and(String string, Integer int1) throws Exception, IOException {
+		List<Map<String,String>> testData=reader.getData("/LMS-TDD-BDD-PHASE2/TestData/Assignment.xlsx", "Assignment");
+		String assignmentdescription=testData.get(int1).get("assignmentDescription");
+		assignment.textSearch(assignmentdescription);
 	}
-
+	
 	@Then("Displays entries with that assignment description")
 	public void displays_entries_with_that_assignment_description() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		boolean t=assignment.textSearchdisplayed();
+	    if(t==true)
+			System.out.println("Searched Text is Visible");
+			else
+				System.out.println("Searched Text Not Visible");
 	}
 
-	@When("Admin enters assignment description which is not existing the table into search box")
-	public void admin_enters_assignment_description_which_is_not_existing_the_table_into_search_box() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	@When("Admin enters assignment description which is not existing the table into search box from excel sheet {string} and {int}")
+	public void admin_enters_assignment_description_which_is_not_existing_the_table_into_search_box_from_excel_sheet_and(String string, Integer int1) throws Exception, IOException {
+		List<Map<String,String>> testData=reader.getData("/LMS-TDD-BDD-PHASE2/TestData/Assignment.xlsx", "Assignment");
+		String assignmentdescription=testData.get(int1).get("assignmentDescription");
+		assignment.textSearch(assignmentdescription);
 	}
 
-	@When("Admin enters assignment due date into search box")
-	public void admin_enters_assignment_due_date_into_search_box() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	@When("Admin enters assignment due date into search box from excel sheet {string} and {int}")
+	public void admin_enters_assignment_due_date_into_search_box_from_excel_sheet_and(String string, Integer int1) throws Exception, IOException {
+		List<Map<String,String>> testData=reader.getData("/LMS-TDD-BDD-PHASE2/TestData/Assignment.xlsx", "Assignment");
+		String assignmentduedate=testData.get(int1).get("dueDate");
+		assignment.textSearch(assignmentduedate);
 	}
 
 	@Then("Displays entries with that assignment due date")
 	public void displays_entries_with_that_assignment_due_date() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		boolean t=assignment.textSearchdisplayed();
+	    if(t==true)
+			System.out.println("Searched Text is Visible");
+			else
+				System.out.println("Searched Text Not Visible");
 	}
 
-	@When("Admin enters assignment due date which is not existing the table into search box")
-	public void admin_enters_assignment_due_date_which_is_not_existing_the_table_into_search_box() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	@When("Admin enters assignment due date which is not existing the table into search box from excel sheet {string} and {int}")
+	public void admin_enters_assignment_due_date_which_is_not_existing_the_table_into_search_box_from_excel_sheet_and(String string, Integer int1) throws Exception, IOException {
+		List<Map<String,String>> testData=reader.getData("/LMS-TDD-BDD-PHASE2/TestData/Assignment.xlsx", "Assignment");
+		String assignmentduedate=testData.get(int1).get("dueDate");
+		assignment.textSearch(assignmentduedate);
 	}
 
-	@When("Admin enters grade value  into search box")
-	public void admin_enters_grade_value_into_search_box() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	@When("Admin enters grade value  into search box from excel sheet {string} and {int}")
+	public void admin_enters_grade_value_into_search_box_from_excel_sheet_and(String string, Integer int1) throws Exception, IOException {
+		List<Map<String,String>> testData=reader.getData("/LMS-TDD-BDD-PHASE2/TestData/Assignment.xlsx", "Assignment");
+		String assignmentgrade=testData.get(int1).get("grade");
+		assignment.textSearch(assignmentgrade);
 	}
 
 	@Then("Displays entries with that assignment  grade")
 	public void displays_entries_with_that_assignment_grade() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		boolean t=assignment.textSearchdisplayed();
+	    if(t==true)
+			System.out.println("Searched Text is Visible");
+			else
+				System.out.println("Searched Text Not Visible");
 	}
 
-	@When("Admin enters grade value which is not existing the table into search box")
-	public void admin_enters_grade_value_which_is_not_existing_the_table_into_search_box() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	@When("Admin enters grade value which is not existing the table into search box from excel sheet {string} and {int}")
+	public void admin_enters_grade_value_which_is_not_existing_the_table_into_search_box_from_excel_sheet_and(String string, Integer int1) throws Exception, IOException {
+		List<Map<String,String>> testData=reader.getData("/LMS-TDD-BDD-PHASE2/TestData/Assignment.xlsx", "Assignment");
+		String assignmentgrade=testData.get(int1).get("grade");
+		assignment.textSearch(assignmentgrade);
 	}
 
 	///////////////////////////////////////////////////////////////////////////////

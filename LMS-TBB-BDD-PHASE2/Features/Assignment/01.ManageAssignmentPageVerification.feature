@@ -103,39 +103,61 @@ Feature: Manage assignment page Verification
     Then Displays entries with that assignment name
      Examples: 
       | Sheetname | RowNumber |
+      | Sheet1    |         2 |
+    
+    Scenario Outline: Validate search box function
+    Given Admin is on dashboard page after Login
+    When  Admin enters assignment name is not existing the table into search box from excel sheet "<Sheetname>" and <RowNumber>   
+    Then Displays empty details in the data table
+    Examples: 
+      | Sheetname | RowNumber |
       | Sheet1    |         1 |
     
-    Scenario: Validate search box function
+    Scenario Outline: Validate search box function
     Given Admin is on dashboard page after Login
-    When  Admin enters assignment name is not existing the table into search box    
-    Then Displays empty details in the data table
+    When Admin enters assignment description into search box from excel sheet "<Sheetname>" and <RowNumber>   
+    Then Displays entries with that assignment description
+    Examples: 
+      | Sheetname | RowNumber |
+      | Sheet1    |         2 |
     
-    #Scenario: Validate search box function
-    #Given Admin is on dashboard page after Login
-    #When Admin enters assignment description into search box     
-    #Then Displays entries with that assignment description
-    #
-    #Scenario: Validate search box function
-    #Given Admin is on dashboard page after Login
-    #When Admin enters assignment description which is not existing the table into search box     
-    #Then Displays empty details in the data table
-    #
-    #Scenario: Validate search box function
-    #Given Admin is on dashboard page after Login
-    #When    Admin enters assignment due date into search box  
-    #Then Displays entries with that assignment due date
-    #
-    #Scenario: Validate search box function
-    #Given Admin is on dashboard page after Login
-    #When   Admin enters assignment due date which is not existing the table into search box   
-    #Then Displays empty details in the data table
-    #
-    #Scenario: Validate search box function
-    #Given Admin is on dashboard page after Login
-    #When   Admin enters grade value  into search box   
-    #Then Displays entries with that assignment  grade
-    #
-    #Scenario: Validate search box function
-    #Given Admin is on dashboard page after Login
-    #When Admin enters grade value which is not existing the table into search box     
-    #Then Displays empty details in the data table
+    Scenario Outline: Validate search box function
+    Given Admin is on dashboard page after Login
+    When Admin enters assignment description which is not existing the table into search box from excel sheet "<Sheetname>" and <RowNumber>
+    Then Displays empty details in the data table
+    Examples: 
+      | Sheetname | RowNumber |
+      | Sheet1    |         1 |
+    
+    Scenario Outline: Validate search box function
+    Given Admin is on dashboard page after Login
+    When    Admin enters assignment due date into search box from excel sheet "<Sheetname>" and <RowNumber> 
+    Then Displays entries with that assignment due date
+    Examples: 
+      | Sheetname | RowNumber |
+      | Sheet1    |         2 |
+    
+    Scenario Outline: Validate search box function
+    Given Admin is on dashboard page after Login
+    When   Admin enters assignment due date which is not existing the table into search box from excel sheet "<Sheetname>" and <RowNumber>  
+    Then Displays empty details in the data table
+    Examples: 
+      | Sheetname | RowNumber |
+      | Sheet1    |         1 |
+    
+    Scenario Outline: Validate search box function
+    Given Admin is on dashboard page after Login
+    When   Admin enters grade value  into search box from excel sheet "<Sheetname>" and <RowNumber>  
+    Then Displays entries with that assignment  grade
+    Examples: 
+      | Sheetname | RowNumber |
+      | Sheet1    |         2 |
+    
+    Scenario Outline: Validate search box function
+    Given Admin is on dashboard page after Login
+    When Admin enters grade value which is not existing the table into search box from excel sheet "<Sheetname>" and <RowNumber>    
+    Then Displays empty details in the data table
+    Examples: 
+      | Sheetname | RowNumber |
+      | Sheet1    |         1 |
+      

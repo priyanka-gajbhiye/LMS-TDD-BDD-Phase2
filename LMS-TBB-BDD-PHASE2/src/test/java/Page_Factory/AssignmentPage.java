@@ -218,18 +218,33 @@ public class AssignmentPage {
 		return pagination_navigator.isDisplayed();
 	}
 	
-	public void textSearch(String assignmentName) 
+	public void textSearch(String string) 
 	{
-		search_btn.sendKeys(assignmentName);	
+		search_btn.sendKeys(string);	
 	}
 	
-	public void textSearchdisplayed() 
+	public boolean textSearchdisplayed() 
 	{
-		String text=search_btn.getText();
-		String rowText=((WebElement) Rows).getText();
-		text.compareTo(rowText);
-		
+		String searchText=search_btn.getText();
+		 boolean rowExists = false;
+		 
+	        for (WebElement row : Rows) {
+	            String rowText = row.getText();
+
+	            if (rowText.contains(searchText)) {
+	                rowExists = true;
+	                break; // Break the loop when the row is found
+	            }
+	        }
+			return rowExists;
 	}
+	
+//	public void countDataTableRows() {
+//		int count=Rows.size();
+//		if(count==0)
+//			System.out.println("Data Table is Empty");
+//		else System.out.println("Data Table not empty");
+//	}
 	
 	public void newAssignmentBtnclick() {
 		addNewAssignment_btn.click();
