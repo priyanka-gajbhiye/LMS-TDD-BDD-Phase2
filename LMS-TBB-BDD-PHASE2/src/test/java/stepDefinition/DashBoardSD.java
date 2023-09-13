@@ -42,8 +42,9 @@ public class DashBoardSD {
 	    db.ResponseTime(int1);
 	}
 	
-	@Then("HTTP response {string} then the login link is broken")
-	public void http_response_then_the_login_link_is_broken(String string) {
+	@Then("HTTP response {string} the link is broken at dashboard")
+	
+	public void http_response_the_login_link_is_broken_at_dashboard(String string) {
 	    db.broken_links();
 	}
 
