@@ -52,5 +52,12 @@ public class ConfigfileReader {
 			throw new RuntimeException("Invalid URL is empty");
 	}
 
+	public static String getManageAttendanceUrl() {
+		String url = properties.getProperty("manageattendance_url");
+		if (url != null)
+			return url;
+		else
+			throw new RuntimeException("Manage Attendance url not available. ");
+	}
 
 }
