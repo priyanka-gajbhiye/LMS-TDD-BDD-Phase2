@@ -239,13 +239,6 @@ public class AssignmentPage {
 			return rowExists;
 	}
 	
-//	public void countDataTableRows() {
-//		int count=Rows.size();
-//		if(count==0)
-//			System.out.println("Data Table is Empty");
-//		else System.out.println("Data Table not empty");
-//	}
-	
 	public void newAssignmentBtnclick() {
 		addNewAssignment_btn.click();
 	}
@@ -555,12 +548,6 @@ public class AssignmentPage {
 		if(string=="Logout")
 			logout_btn.click();
 		}
-		
-	public void PageDisplay() 
-	{
-		
-	}
-
 
 
 }
