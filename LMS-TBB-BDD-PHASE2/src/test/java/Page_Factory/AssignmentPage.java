@@ -62,18 +62,18 @@ public class AssignmentPage {
 	@FindBy(xpath="//*[@class='btn btn-close']") WebElement close_btn;
 	@FindBy (xpath="//*[@class='alert alert-message']") WebElement message;
 	@FindBy (xpath="//*[@class='date-picker-highligted')]/div[@class='v-btn__content']") WebElement highligted_date;
+	@FindBy (xpath="//*[contains(text(),'Delete Confirm')]") WebElement DeletConfirm_Box;
+	@FindBy(xpath="//*[@class='btn btn-yes']") WebElement yes_btn;
+	@FindBy(xpath="//*[@class='btn btn-no']") WebElement no_btn;
 	
 //	@FindBy(xpath="//*[@class='btn btn-manage']") WebElement manage_btn;
 //	@FindBy(xpath="//*[@class='btn btn-assignment-name']") WebElement assignmentName_btn;
 //	@FindBy(xpath="//*[@class='btn btn-submit']") WebElement submit_btn;
 //	@FindBy(xpath="//*[@class='btn btn-clear']") WebElement clear_btn;
 //	@FindBy(xpath="//*[@href='swithc_account_link']") WebElement switchAccount_link;
-//	@FindBy(xpath="//*[@class='btn btn-yes']") WebElement yes_btn;
-//	@FindBy(xpath="//*[@class='btn btn-no']") WebElement no_btn;
 //	@FindBy(xpath="//*[@class='btn btn-delete-on-right']") WebElement deleteOnRight_btn;
 //	@FindBy(xpath="//*[@class='btn btn-delete-on-top-left']") WebElement deleteOnTopLeft_btn;
 //	@FindBy (id="search_query_top") WebElement search_txt;
-//	@FindBy (xpath="//*[contains(text(),'Delete Confirm')]") WebElement DeletConfirm_Box;
 //	@FindBy (xpath="//table//thead//tr//th//input") WebElement SelectAll_checkbox;
 //	@FindBy (xpath="//button//span[text()=' Delete']") WebElement deleteMuti_btn;
 	
@@ -332,6 +332,7 @@ public class AssignmentPage {
 		assignment_file4.sendKeys(AssignmentFile4);
 		assignment_file5.sendKeys(AssignmentFile5);
 		addAssignmentDisplay(AssignmentName);
+		rowDeleted(AssignmentName);
 	}
 	
 	public boolean addAssignmentDisplay(String AssignmentName) {
@@ -399,6 +400,47 @@ public class AssignmentPage {
 	{
 		cancel_btn.click();
 	}
+	
+	public void clickEdit() 
+	{
+		edit_button.click();	
+	}
+	
+	
+	public void clickDeleteOnRight() 
+	{
+		row_delete_btn.click();	
+	}
+	
+	public boolean deleteDialogBoxdisplay() 
+	{
+		return DeletConfirm_Box.isDisplayed();	
+	}
+	
+	public String yesBtndisplay() 
+	{
+		if(yes_btn.isDisplayed())	
+		return yes_btn.getText();
+		return "Error";
+	}
+	
+	public String noBtndisplay() 
+	{
+		if(no_btn.isDisplayed())
+		return no_btn.getText();
+		return "Error";
+	}
+	
+	public void clickYes() 
+	{
+		yes_btn.click();	
+	}
+	
+	public void clickNo() 
+	{
+		no_btn.click();	
+	}
+	
 	
 //	public void clickPreviousBtn() 
 //	{
@@ -474,11 +516,6 @@ public class AssignmentPage {
 //		manage_btn.click();	
 //	}
 //	
-//	public void clickEdit() 
-//	{
-//		edit_btn.click();	
-//	}
-//	
 //	public void clickAssignmentName() 
 //	{
 //		assignmentName_btn.click();	
@@ -508,22 +545,6 @@ public class AssignmentPage {
 //	{
 //		delete_btn.click();	
 //	}
-//	
-//	public void clickDeleteOnRight() 
-//	{
-//		deleteOnRight_btn.click();	
-//	}
-//	
-//	public void clickYes() 
-//	{
-//		yes_btn.click();	
-//	}
-//	
-//	public void clickNo() 
-//	{
-//		no_btn.click();	
-//	}
-//	
 //	public void clickDeleteOnTopLeft() 
 //	{
 //		deleteOnTopLeft_btn.click();	

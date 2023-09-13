@@ -651,4 +651,132 @@ List<Map<String,String>> testData= reader.getData("/LMS-TDD-BDD-PHASE2/TestData/
 		
 	}
 
+	//////////////////////////////////////////////////////////////////////////////////
+	/////////////////Edit Assignment Validation Feature///////////////////////
+
+
+	
+	@Given("Admin is in manage assignment page")
+	public void admin_is_in_manage_assignment_page() {
+		String t=assignment.Header();
+	    if(t=="Manage Assignment")
+			System.out.println("manage assignment page is Visible");
+			else
+				System.out.println("Not Visible");
+	}
+	
+	@When("Admin clicks Edit button in data table")
+	public void admin_clicks_edit_button_in_data_table() {
+	    assignment.clickEdit();
+	}
+	
+	@Then("Edit popup window appears with heading Assignment Details")
+	public void edit_popup_window_appears_with_heading_assignment_details() {
+		String t=assignment.popUpHeader();
+		if(t=="Assignment Details")
+			System.out.println("assignment pop up window is Visible");
+			else
+				System.out.println("Not Visible");
+	}
+	
+	@When("Admin clicks Edit button from one of the row in data table")
+	public void admin_clicks_edit_button_from_one_of_the_row_in_data_table() {
+		assignment.clickEdit();
+	}
+	
+	@Then("Edit popup window appears with same row values in the all {string}")
+	public void edit_popup_window_appears_with_same_row_values_in_the_all(String string) {		
+		boolean t=assignment.inputFieldsdisplay(string);
+		if(t==true)
+			System.out.println("Field is Visible");
+			else
+				System.out.println("Not Visible");
+	}
+	
+	@Given("Admin is in  Edit assignment detail popup window")
+	public void admin_is_in_edit_assignment_detail_popup_window() {
+		String t=assignment.popUpHeader();
+		if(t=="Assignment Details")
+			System.out.println("assignment pop up window is Visible");
+			else
+				System.out.println("Not Visible");
+	}
+	
+	@Then("Admin should see updated assignment details is added in the data table")
+	public void admin_should_see_updated_assignment_details_is_added_in_the_data_table() {
+		boolean t=assignment.addAssignmentDisplay(toString());
+	    if(t==true)
+			System.out.println("new assignment is Visible");
+			else
+				System.out.println("Not Visible");
+	}
+	
+
+	//////////////////////////////////////////////////////////////////////////////
+	////////////////////////////Delete Assignment Feature//////////////////////////
+
+	
+	@When("Admin clicks delete button in data table row level")
+	public void admin_clicks_delete_button_in_data_table_row_level() {
+	    assignment.clickDeleteOnRight();
+	}
+	
+	@Then("Admin should see dialog box")
+	public void admin_should_see_dialog_box() {
+	    boolean t=assignment.deleteDialogBoxdisplay();
+	    if(t==true)
+			System.out.println("new assignment is Visible");
+			else
+				System.out.println("Not Visible");
+	}
+	
+	@Then("Alert should have {string} button to accept")
+	public void alert_should_have_button_to_accept(String string) {
+		String actual_Msg = assignment.yesBtndisplay();
+		Assert.assertEquals(actual_Msg,string);
+	}
+	
+	@Then("Alert should have {string} button to reject")
+	public void alert_should_have_button_to_reject(String string) {
+		String actual_Msg = assignment.noBtndisplay();
+		Assert.assertEquals(actual_Msg,string);
+	}
+	
+	@Given("Admin is in delete alert")
+	public void admin_is_in_delete_alert() {
+		boolean t=assignment.deleteDialogBoxdisplay();
+	    if(t==true)
+			System.out.println("new assignment is Visible");
+			else
+				System.out.println("Not Visible");
+	}
+	
+	@When("Admin clicks yes button")
+	public void admin_clicks_yes_button() {
+	    assignment.clickYes();
+	}
+	
+	@Then("Redirected to assignment page and selected assignment details are deleted from the data table")
+	public void redirected_to_assignment_page_and_selected_assignment_details_are_deleted_from_the_data_table() {
+	    boolean t=assignment.addAssignmentDisplay(toString());
+	    if(t==false)
+			System.out.println("assignment is deleted");
+			else
+				System.out.println("Not deleted");
+	}
+	
+	@When("Admin clicks no button")
+	public void admin_clicks_no_button() {
+	    assignment.clickNo();
+	}
+	
+	@Then("Redirected to assignment page and selected assignment details are not deleted from the data table")
+	public void redirected_to_assignment_page_and_selected_assignment_details_are_not_deleted_from_the_data_table() {
+		boolean t=assignment.addAssignmentDisplay(toString());
+	    if(t==true)
+			System.out.println("assignment is not deleted");
+			else
+				System.out.println("deleted");
+	}
+	}
 }
