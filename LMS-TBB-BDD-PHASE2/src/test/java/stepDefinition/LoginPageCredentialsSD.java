@@ -24,8 +24,7 @@ public class LoginPageCredentialsSD {
 	}
 
 	@When("Admin enter valid credentials from excel sheet {string} and {int}")
-	public void admin_enter_valid_credentials_from_excel_sheet_(String Login, Integer int1) throws InvalidFormatException, IOException {
-		
+	public void admin_enter_valid_credentials_from_excel_sheet_(String Login, int int1) throws InvalidFormatException, IOException {
 		List<Map<String,String>> testData=reader.getData(".\\TestData\\Login.xlsx", "Login");
 		String user=testData.get(int1).get("User");
 		String password=testData.get(int1).get("Password");

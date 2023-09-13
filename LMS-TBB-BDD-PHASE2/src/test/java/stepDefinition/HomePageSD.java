@@ -14,7 +14,7 @@ public class HomePageSD {
 	
 	@Given("Admin Launch the Browser")
 	public void admin_launch_the_browser() {
-	    
+	    Loggerload.info("Admin Launch the Browser");
 	}
 
 	@When("Admin gives correct LMS portal URL")
@@ -24,7 +24,7 @@ public class HomePageSD {
 
 	@Then("Admin should land on the Home Page")
 	public void admin_should_land_on_the_home_page() {
-	  System.out.println("Admin is on Home Page");
+	    Loggerload.info("Admin is on Home Page");
 	}
 	
 	@Then("HTTP response {string} then the link is broken")
@@ -49,7 +49,7 @@ public class HomePageSD {
 
 	@Then("Admin should see login button")
 	public void admin_should_see_login_button() {
-	    
+	   
 	}
 
 	@Then("Admin should able to click login button")

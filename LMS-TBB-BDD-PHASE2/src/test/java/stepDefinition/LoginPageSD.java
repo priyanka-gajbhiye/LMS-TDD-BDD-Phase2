@@ -44,7 +44,7 @@ public class LoginPageSD {
 
 	@Then("Admin should see two text feilds")
 	public void admin_should_see_two_text_feilds() {
-	    hp.textcheck();
+	    hp.textcheck(2);
 	}
 
 	@Then("Admin should {string} in the first text feild")
