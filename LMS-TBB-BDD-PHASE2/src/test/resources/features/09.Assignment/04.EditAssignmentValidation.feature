@@ -8,7 +8,7 @@ Feature: Edit assignment Validation
     When Admin clicks Edit button in data table 
     Then Edit popup window appears with heading Assignment Details
     
-    Scenario: Verify values in popup window
+    Scenario Outline: Verify values in popup window
     Given Admin is in manage assignment page
     When Admin clicks Edit button from one of the row in data table 
     Then Edit popup window appears with same row values in the all "<fields>"
@@ -27,7 +27,7 @@ Feature: Edit assignment Validation
     |Assignment File5|
     
     @EditAssignmentPopupWindow
-    Scenario: Validate admin able to update assignment with valid data in mandatory fields
+    Scenario Outline: Validate admin able to update assignment with valid data in mandatory fields
     Given Admin is in  Edit assignment detail popup window
     When  Admin enters all mandatory field values with valid data from "<SheetName>",<RowNumber> and clicks save button
     # ( Program name, batch number,Assignment Name, grade by, Assignment due date)
@@ -36,7 +36,7 @@ Feature: Edit assignment Validation
       | SheetName | RowNumber |
       | Sheet2    |         3 |
     
-    Scenario: Validate admin able to update assignment with invalid data in mandatory fields
+    Scenario Outline: Validate admin able to update assignment with invalid data in mandatory fields
     Given Admin is in  Edit assignment detail popup window
     When  Admin enters all mandatory field values with invalid data from "<SheetName>",<RowNumber> and clicks save button 
     #(Program name, batch number,Assignment Name, grade by, Assignment due date )
@@ -45,7 +45,7 @@ Feature: Edit assignment Validation
       | SheetName | RowNumber |
       | Sheet2    |         4 |
     
-    Scenario: Validate admin able to update assignment with valid data  in all fields
+    Scenario Outline: Validate admin able to update assignment with valid data  in all fields
     Given Admin is in  Edit assignment detail popup window
     When  Admin enters values in all fields with valid data from "<SheetName>",<RowNumber> and clicks save button 
     #(Program name, batch number,Assignment Name, Assignment Description, grade by, Assignment due date, Assignment File1, Assignment file 2, Assignment file 3, Assignment file 4, Assignment file 5)
@@ -54,7 +54,7 @@ Feature: Edit assignment Validation
       | Sheetname | RowNumber |
       | Sheet2    |         5 |
       
-    Scenario: Validate admin able to update assignment with invalid data  in optional fields
+    Scenario Outline: Validate admin able to update assignment with invalid data  in optional fields
     Given Admin is in  Edit assignment detail popup window
     When  Admin enters with invalid data in optional fields from "<SheetName>",<RowNumber> and clicks save button 
     #(Assignment File1, Assignment file 2, Assignment file 3, Assignment file 4, Assignment file 5)
@@ -63,7 +63,7 @@ Feature: Edit assignment Validation
       | Sheetname | RowNumber |
       | Sheet2    |         6 |
     
-    Scenario: Validate admin able to update assignment missing program name
+    Scenario Outline: Validate admin able to update assignment missing program name
     Given Admin is in  Edit assignment detail popup window
     When  Admin enters  data missing value in program name from "<SheetName>",<RowNumber> and clicks save button 
     #(batch number,Assignment Name, Assignment Description, grade by, Assignment due date, Assignment File1, Assignment file 2, Assignment file 3, Assignment file 4, Assignment file 5)
@@ -72,7 +72,7 @@ Feature: Edit assignment Validation
       | Sheetname | RowNumber |
       | Sheet2    |         7 |
     
-    Scenario: Validate admin able to update assignment missing batch number
+    Scenario Outline: Validate admin able to update assignment missing batch number
     Given Admin is in  Edit assignment detail popup window
     When  Admin enters data missing value in Batch number from "<SheetName>",<RowNumber> and clicks save button 
     #(Program name,Assignment Name, Assignment Description, grade by, Assignment due date, Assignment File1, Assignment file 2, Assignment file 3, Assignment file 4, Assignment file 5)
@@ -81,7 +81,7 @@ Feature: Edit assignment Validation
       | Sheetname | RowNumber |
       | Sheet2    |         8 |
       
-    Scenario: Validate admin able to update assignment missing assignment name
+    Scenario Outline: Validate admin able to update assignment missing assignment name
     Given Admin is in  Edit assignment detail popup window
     When  Admin enters data missing value in Assignment name from "<SheetName>",<RowNumber> and clicks save button 
     #(Program name, batch number,Assignment Name,  grade by, Assignment Due date )
@@ -90,7 +90,7 @@ Feature: Edit assignment Validation
       | Sheetname | RowNumber |
       | Sheet2    |         9 |
     
-    Scenario: Validate admin able to update assignment missing due date
+    Scenario Outline: Validate admin able to update assignment missing due date
     Given Admin is in  Edit assignment detail popup window
     When  Admin enters data missing value in Assignment due date from "<SheetName>",<RowNumber> and clicks save button 
     # ( Program name, batch number,Assignment Name, grade by)
@@ -99,7 +99,7 @@ Feature: Edit assignment Validation
       | Sheetname | RowNumber |
       | Sheet2    |        10 |
     
-    Scenario: Validate admin able to update assignment missing grade by
+    Scenario Outline: Validate admin able to update assignment missing grade by
     Given Admin is in  Edit assignment detail popup window
     When  Admin enters data missing value in grade by  from "<SheetName>",<RowNumber> and clicks save button 
     #(Program name, batch number,Assignment Name, Assignment due date)
@@ -108,7 +108,7 @@ Feature: Edit assignment Validation
       | Sheetname | RowNumber |
       | Sheet2    |        11 |
     
-    Scenario: Validate  admin able to update assignment passing past date 
+    Scenario Outline: Validate  admin able to update assignment passing past date 
     Given Admin is in  Edit assignment detail popup window
     When  Admin enters passed date in the due date field from "<SheetName>",<RowNumber> and clicks save button
     # ( Program name, batch number,Assignment Name,  grade by, Assignment Due date )

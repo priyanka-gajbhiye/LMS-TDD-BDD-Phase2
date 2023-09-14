@@ -60,10 +60,10 @@ public class AssignmentSD{
 		Assert.assertEquals(string,actual_Msg);
 		System.out.println("The field is "+actual_Msg);
 	}
-
-
-	@Then("Admin should see disabled delete icon below the header")
-	public void admin_should_see_disabled_delete_icon_below_the_header() {
+		
+	
+	@Then("Admin should see disabled delete icon below the Manage assignment")
+	public void admin_should_see_disabled_delete_icon_below_the_Manage_assignment() {
 		boolean t=assignment.deleteMultiRowBtndisplay();
 		if(t==true)
 		System.out.println("Disabled Delete Button is Visible");
@@ -740,6 +740,15 @@ List<Map<String,String>> testData= reader.getData("/LMS-TDD-BDD-PHASE2/TestData/
 				System.out.println("Not Visible");
 	}
 	
+	@Then("Assignment cannot be updated for the passed date {string}")
+	public void assignment_cannot_be_updated_for_the_passed_date(String string) {
+		boolean t=assignment.addAssignmentDisplay(toString());
+	    if(t==true)
+			System.out.println("new assignment is Visible");
+			else
+				System.out.println("Not Visible");
+	}
+	
 
 	//////////////////////////////////////////////////////////////////////////////
 	////////////////////////////Delete Assignment Feature//////////////////////////
@@ -870,7 +879,7 @@ List<Map<String,String>> testData= reader.getData("/LMS-TDD-BDD-PHASE2/TestData/
 	    assignment.clickAssignmentPage();
 	}
 	
-	@Then("Data table should display {string} page  when entries available")
+	@Then("Data table should display  {string} page when entries available")
 	public void data_table_should_display_page_when_entries_available(String string) {
 		String actual_Msg = assignment.pagesDisplay();
 		Assert.assertEquals(actual_Msg,string);

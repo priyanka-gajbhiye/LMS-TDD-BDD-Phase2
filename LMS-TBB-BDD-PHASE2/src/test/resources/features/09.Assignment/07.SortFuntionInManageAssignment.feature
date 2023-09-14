@@ -11,4 +11,4 @@
     Scenario: Verify sort function in data table for ascending order
     Given Admin is in manage assignment page
     When Admin double click on assignment name column header to sort 
-    Then Admin should see data table sorted in "ascending"  order
+    Then Admin should see data table sorted in "ascending" order

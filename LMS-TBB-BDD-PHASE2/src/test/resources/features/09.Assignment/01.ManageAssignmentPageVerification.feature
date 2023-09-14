@@ -2,8 +2,8 @@
 
 Feature: Manage assignment page Verification
 
-  Scenario: Verify landing in manage assignment page
-    Given Admin is on dashboard page after Login
+  Scenario: Verify landing in manage assignment page  
+  Given Admin is on dashboard page after Login
     When Admin clicks assignment button on the navigation bar
     Then Admin should see URL with Manage assignment
     
@@ -71,7 +71,7 @@ Feature: Manage assignment page Verification
     Then Delete Icon will not be present in data table
     
     Scenario: Verify sort icon in the data table
-    Given Admin is on dashboard page after Login
+		Given Admin is on dashboard page after Login
     When Admin clicks assignment button on the navigation bar 
     Then Admin should see sort icon near the column headers except for Edit and Delete
     

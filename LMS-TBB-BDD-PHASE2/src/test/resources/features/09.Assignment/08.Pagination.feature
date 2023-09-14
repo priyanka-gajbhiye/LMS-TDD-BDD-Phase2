@@ -5,7 +5,7 @@
   	Scenario: Verify sheet one is displayed on default in data table
     Given Admin is on dashboard page after Login
     When Admin clicks "Assignment" button on the navigation bar
-    Then Data table should display "1" page  when entries available
+    Then Data table should display  "1" page when entries available
     
     Scenario: Verify  right arrow is enable when sheet one is displayed in data table
     Given Admin is on dashboard page after Login
@@ -30,7 +30,7 @@
     Scenario: Verify  right arrow is disable when sheet two is displayed in data table when entries are less than 10
     Given Admin is on dashboard page after Login
     When Admin clicks "Assignment" button on the navigation bar
-    Then Data table should display  page "1"  when entries available
+    Then Data table should display  "1" page when entries available
     
     Scenario: Verify pagination controls enabled
     Given Admin is on dashboard page after Login
