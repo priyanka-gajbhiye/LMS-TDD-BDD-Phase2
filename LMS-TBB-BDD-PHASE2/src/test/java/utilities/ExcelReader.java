@@ -1,3 +1,4 @@
+
 package utilities;
 
 import java.io.File;
@@ -17,7 +18,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.ss.util.NumberToTextConverter;
 
 public class ExcelReader {
-	
+
 	public List<Map<String, String>> getData(String excelFilePath, String sheetName)
 			throws InvalidFormatException, IOException {
 		Sheet sheet = getSheetByName(excelFilePath, sheetName);
@@ -152,4 +153,6 @@ public class ExcelReader {
 		return columnMapdata;
 	}
 
-}
+} 
+
+

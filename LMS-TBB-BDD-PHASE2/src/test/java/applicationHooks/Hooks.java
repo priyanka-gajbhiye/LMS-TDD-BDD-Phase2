@@ -1,7 +1,6 @@
 package applicationHooks;
 
 import org.openqa.selenium.WebDriver;
-
 import Page_Factory.BrowserManager;
 import io.cucumber.java.BeforeAll;
 import io.cucumber.java.Scenario;
@@ -9,6 +8,7 @@ import utilities.ConfigfileReader;
 import utilities.Loggerload;
 
 public class Hooks {
+
 	private static WebDriver driver;
 	private static BrowserManager browsermanager;
 	static Scenario scenario;
