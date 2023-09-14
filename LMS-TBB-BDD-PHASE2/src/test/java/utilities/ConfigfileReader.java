@@ -37,6 +37,7 @@ public class ConfigfileReader {
 
 	public static String getApplicationUrl() {
 		String url = properties.getProperty("url");
+		System.out.println("URL is " +url);
 		if (url != null)
 			return url;
 		else
@@ -58,4 +59,57 @@ public class ConfigfileReader {
 		else
 			throw new RuntimeException("manage assignment url not available. ");
 	}
+	public static String getManageProgramUrl() {
+		String url = properties.getProperty("manageprogram_url");
+		if (url != null)
+			return url;
+		else
+			throw new RuntimeException("manage program url not available. ");
+	}
+	public static String getManageBatchUrl() {
+		String url = properties.getProperty("managebatch_url");
+		if (url != null)
+			return url;
+		else
+			throw new RuntimeException("manage batch url not available. ");
+	}
+
+	public static String studentdetailUrl() {
+		String invalid_url = properties.getProperty("studenturl");
+		if (invalid_url != null)
+			return invalid_url;
+		else
+			throw new RuntimeException("studenturl is empty");
+	}
+	public static String manageuserUrl() {
+		String invalid_url = properties.getProperty("manageuserurl");
+		if (invalid_url != null)
+			return invalid_url;
+		else
+			throw new RuntimeException("manageuserurl is empty");
+	}
+	public static String dashboardUrl() {
+		String invalid_url = properties.getProperty("Dashboardurl");
+		if (invalid_url != null)
+			return invalid_url;
+		else
+			throw new RuntimeException("Dashboardurl is empty");
+  }
+    
+	public static String getManageClassUrl() {
+		String browser = properties.getProperty("browser");
+		if (browser != null)
+			return browser;
+		else
+			throw new RuntimeException("browser not available. ");
+  }
+  public static String getManageAttendanceUrl() {
+		String url = properties.getProperty("manageattendance_url");
+		if (url != null)
+			return url;
+		else
+			throw new RuntimeException("Manage Attendance url not available. ");
+  }
+
+	
 }
