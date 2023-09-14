@@ -73,4 +73,27 @@ public class ConfigfileReader {
 		else
 			throw new RuntimeException("manage batch url not available. ");
 	}
+	
+	public static String studentdetailUrl() {
+		String invalid_url = properties.getProperty("studenturl");
+		if (invalid_url != null)
+			return invalid_url;
+		else
+			throw new RuntimeException("studenturl is empty");
+	}
+	public static String manageuserUrl() {
+		String invalid_url = properties.getProperty("manageuserurl");
+		if (invalid_url != null)
+			return invalid_url;
+		else
+			throw new RuntimeException("manageuserurl is empty");
+	}
+	public static String dashboardUrl() {
+		String invalid_url = properties.getProperty("Dashboardurl");
+		if (invalid_url != null)
+			return invalid_url;
+		else
+			throw new RuntimeException("Dashboardurl is empty");
+	}
+
 }
