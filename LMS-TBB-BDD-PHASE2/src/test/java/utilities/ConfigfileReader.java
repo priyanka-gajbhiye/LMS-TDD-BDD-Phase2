@@ -94,6 +94,14 @@ public class ConfigfileReader {
 			return invalid_url;
 		else
 			throw new RuntimeException("Dashboardurl is empty");
+  }
+    
+	public static String getManageClassUrl() {
+		String browser = properties.getProperty("browser");
+		if (browser != null)
+			return browser;
+		else
+			throw new RuntimeException("browser not available. ");
 	}
 
 }
