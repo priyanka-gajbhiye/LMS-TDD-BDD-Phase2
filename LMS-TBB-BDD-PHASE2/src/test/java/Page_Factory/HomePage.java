@@ -8,17 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import utilities.ConfigfileReader;
 
-public class HomePage {
-
-	public static WebDriver driver=BrowserManager.getdriver();
-	 String url=ConfigfileReader.getApplicationUrl();
-	 String invalid_url=ConfigfileReader.getInvalidUrl();
-	 
-	 @FindBy (xpath  = "//a/button") WebElement loginbtn ;
-		
-	public HomePage() {
-		PageFactory.initElements(driver, this);
-	}
 	
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -93,8 +82,8 @@ public class HomePage {
 
 	}
 
-		System.out.println("Incorrect URL");
-	}
+	
+	
 	
 	
 	public void invalidURLstatus() {

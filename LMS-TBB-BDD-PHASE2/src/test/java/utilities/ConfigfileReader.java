@@ -59,31 +59,8 @@ public class ConfigfileReader {
 		else
 			throw new RuntimeException("manage assignment url not available. ");
 	}
-	public static String getManageProgramUrl() {
-		String url = properties.getProperty("manageprogram_url");
-		if (url != null)
-			return url;
-		else
-			throw new RuntimeException("manage program url not available. ");
-	}
-	public static String getManageBatchUrl() {
-		String url = properties.getProperty("managebatch_url");
-		if (url != null)
-			return url;
-		else
-			throw new RuntimeException("manage batch url not available. ");
-	}
-
-			throw new RuntimeException("Invalid URL is empty");
-	}
-
-  public static String getManageAssignmentUrl() {
-		String url = properties.getProperty("manageassignment_url");
-		if (url != null)
-			return url;
-		else
-			throw new RuntimeException("manage assignment url not available. ");
-	}
+	
+  
 	public static String getManageProgramUrl() {
 		String url = properties.getProperty("manageprogram_url");
 		if (url != null)
