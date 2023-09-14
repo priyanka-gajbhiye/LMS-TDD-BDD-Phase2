@@ -8,8 +8,8 @@ Feature: Login Page Verification
   Scenario: Verify Login Page
     Then Admin land on Login Page
 
-  Scenario: Verify Broken Link
-    Then HTTP response ">=400" then the link is broken
+  Scenario: Verify Broken Link on login page
+    Then HTTP response ">=400" then the login link is broken 
 
   Scenario: Varify Header of the Login Page
     Then Admin should see "Please Login to LMS application" in the Header
@@ -24,13 +24,13 @@ Feature: Login Page Verification
     Then Admin should "user" in the first text feild
 
   Scenario: Verify asterik next to user text
-    Then Admin should see * symbol next to user text
+    Then Admin should see "*" symbol next to user text
 
   Scenario: Verify text on the second text feilds
     Then Admin should "Password" in the second text feild
 
   Scenario: Verify asterik next to password text
-    Then Admin should see * symbol next to password text
+    Then Admin should see "*" symbol next to password text
 
   Scenario: Verify the alignment input feild for the login
     Then Admin should see input feild on the centre of the page

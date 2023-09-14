@@ -14,7 +14,7 @@ glue = { "stepDefinition","applicationHooks" }) // location of step definition f
 public class RunnerFile extends AbstractTestNGCucumberTests {
 	@DataProvider(parallel = false)
 	public Object[][] scenarios() {
-
+			
 		return super.scenarios();
 	}
 
