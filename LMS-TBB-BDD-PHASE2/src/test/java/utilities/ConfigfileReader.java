@@ -51,6 +51,14 @@ public class ConfigfileReader {
 		else
 			throw new RuntimeException("Invalid URL is empty");
 	}
-
+	
+	
+	public static String getManageClassUrl() {
+		String browser = properties.getProperty("browser");
+		if (browser != null)
+			return browser;
+		else
+			throw new RuntimeException("browser not available. ");
+	}
 
 }

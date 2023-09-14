@@ -66,7 +66,7 @@ public class HomePage {
             
             huc.setRequestMethod("HEAD");
             
-            huc.connect();
+            huc.connect(); 
             
             respCode = huc.getResponseCode();
             
